@@ -1,9 +1,20 @@
 // SearchBar.js
-import React from "react";
+import React, {useEffect} from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
 const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
+  
+  useEffect(() => {
+    const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
+      setClicked(false);
+    });
+    return () => {
+      hideSubscription.remove();
+    };
+  }, []);
+
+
   return (
     <View style={styles.container}>
       <View

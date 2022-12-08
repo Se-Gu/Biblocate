@@ -20,11 +20,7 @@ const BookSearchScreen = () => {
                     setSearchPhrase={setSearchPhrase}
                     setClicked={setClicked} 
                 ></SearchBar>
-                {books.map(({id, title, author}) => {
-                    return (
-                        <Book key={id} title={title} subtitle={author}/>
-                    )
-                })}
+                <Book></Book>
             </ScrollView>
         </SafeAreaView>
     )
