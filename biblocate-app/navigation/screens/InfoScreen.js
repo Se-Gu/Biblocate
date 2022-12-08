@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const SettingsScreen = () => {
+const InfoScreen = () => {
   return (
     <View>
-      <Text>SettingsScreen</Text>
+      <Text>InfoScreen</Text>
     </View>
   );
 };
 
-export default SettingsScreen;
+export default InfoScreen;
