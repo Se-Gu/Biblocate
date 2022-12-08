@@ -10,17 +10,17 @@ const BookSearchScreen = () => {
 
     return (
         <SafeAreaView>
+            <SearchBar 
+                clicked={clicked} 
+                searchPhrase={searchPhrase} 
+                setSearchPhrase={setSearchPhrase}
+                setClicked={setClicked} 
+            ></SearchBar>
             <ScrollView onScrollBeginDrag={() => {
                 console.log("dismissed");
                 Keyboard.dismiss();
             }}
             keyboardShouldPersistTaps='handled'>
-                <SearchBar 
-                    clicked={clicked} 
-                    searchPhrase={searchPhrase} 
-                    setSearchPhrase={setSearchPhrase}
-                    setClicked={setClicked} 
-                ></SearchBar>
                 <Book></Book>
             </ScrollView>
         </SafeAreaView>

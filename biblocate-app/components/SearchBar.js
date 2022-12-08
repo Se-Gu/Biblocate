@@ -59,13 +59,10 @@ const styles = StyleSheet.create({
       justifyContent: "flex-start",
       alignItems: "center",
       flexDirection: "row",
-      width: "90%",
-  
     },
     searchBar__unclicked: {
       padding: 10,
       flexDirection: "row",
-      width: "95%",
       backgroundColor: "#d9dbda",
       borderRadius: 15,
       alignItems: "center",

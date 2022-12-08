@@ -1,51 +1,44 @@
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Keyboard } from 'react-native'
 import React, { Component, useState, useRef} from 'react'
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import Icon from "react-native-vector-icons/Ionicons";
-import {Transition, Transitioning} from 'react-native-reanimated';
+import Animated, {Layout, Transition, Transitioning, Easing} from 'react-native-reanimated';
 import books from '../data/Data';
-
-const transition = (
-    <Transition.Together>
-        <Transition.In type='fade' durationMs={100}/>
-        <Transition.Change/>
-        <Transition.Out type='fade' durationMs={100}/>
-    </Transition.Together>
-);
 
 const Book = () => {
     const [currentIndex, setCurrentIndex] = useState(null);
     const ref = React.useRef();
     
     return (
-        <Transitioning.View
-            ref={ref}
-            transition={transition}
-        >
+        <Animated.View>
             {books.map(({id, title, author}, index) => {
                 return(
-                    <TouchableOpacity
+                    <Animated.View
                         key={id}
-                        onPress={() => {
-                            ref.current.animateNextTransition();
-                            setCurrentIndex(index === currentIndex ? null : index);
-                        }}
-                        activeOpacity={0.8}
-                        style={styles.container}
+                        layout={Layout.duration(300).easing(Easing.out(Easing.poly(3)))}
                     >
-                        <Card style={styles.book}>
-                            <Card.Title title={title} subtitle={author}/>
-                            { currentIndex === index && ( 
-                            <Card.Content>
-                                <Title>Card title</Title>
-                                <Paragraph>Card content</Paragraph>
-                            </Card.Content>
-                            )}
-                        </Card>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                setCurrentIndex(
+                                    index === currentIndex ? null : index
+                                );
+                                Keyboard.dismiss();
+                            }}
+                        >
+                            <Card style={styles.book}>
+                                <Card.Title title={title} subtitle={author}/>
+                                { currentIndex === index && ( 
+                                <Card.Content>
+                                    <Title>Card title</Title>
+                                    <Paragraph>Card content</Paragraph>
+                                </Card.Content>
+                                )}
+                            </Card>
+                        </TouchableOpacity>
+                    </Animated.View>
                 )
             })}
-       </Transitioning.View>
+        </Animated.View>
     )
 }
 
