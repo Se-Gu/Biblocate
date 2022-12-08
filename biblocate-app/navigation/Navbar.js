@@ -1,15 +1,14 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
-import SearchScreen from "./screens/SearchScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import SearchScreen from "./screens/InfoScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import InfoScreen from "./screens/InfoScreen";
 
 const Tabs = createBottomTabNavigator();
 
 const homeName = "Home";
-const searchName = "Search";
-const settingsName = "Settings";
+const infoName = "Info";
 
 const Navbar = () => {
   return (
@@ -24,11 +23,8 @@ const Navbar = () => {
             case homeName:
               iconName = focused ? "home" : "home-outline";
               break;
-            case searchName:
-              iconName = focused ? "search" : "search-outline";
-              break;
-            case settingsName:
-              iconName = focused ? "settings" : "settings-outline";
+            case infoName:
+              iconName = focused ? "help-circle" : "help-circle-outline";
               break;
             default:
               iconName = "home";
@@ -52,8 +48,7 @@ const Navbar = () => {
       })}
     >
       <Tabs.Screen name={homeName} component={HomeScreen} />
-      <Tabs.Screen name={searchName} component={SearchScreen} />
-      <Tabs.Screen name={settingsName} component={SettingsScreen} />
+      <Tabs.Screen name={infoName} component={InfoScreen} />
     </Tabs.Navigator>
   );
 };
