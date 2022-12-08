@@ -5,7 +5,6 @@ import BookSearchScreen from "./BookSearchScreen";
 const InfoScreen = () => {
   return (
     <View>
-      <Text>InfoScreen</Text>
       <BookSearchScreen/>
     </View>
   );
