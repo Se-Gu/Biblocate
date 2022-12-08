@@ -20,10 +20,10 @@ export default class Book extends Component {
 
 const styles = StyleSheet.create({
     book: {
-      backgroundColor: "#fff",
-      padding: 0,
-      marginTop: 10,
-      marginLeft: 5,
-      marginRight: 5,
+        backgroundColor: "#fff",
+        padding: 0,
+        marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5,
     },
-  });
+});
