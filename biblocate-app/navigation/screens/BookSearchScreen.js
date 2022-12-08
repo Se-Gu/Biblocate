@@ -13,7 +13,8 @@ const BookSearchScreen = () => {
             <ScrollView onScrollBeginDrag={() => {
                 console.log("dismissed");
                 Keyboard.dismiss();
-            }}>
+            }}
+            keyboardShouldPersistTaps='handled'>
                 <SearchBar 
                     clicked={clicked} 
                     searchPhrase={searchPhrase} 

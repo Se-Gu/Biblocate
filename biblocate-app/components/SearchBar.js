@@ -19,9 +19,7 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
     <View style={styles.container}>
       <View
         style={
-          clicked
-            ? styles.searchBar__clicked
-            : styles.searchBar__unclicked
+            styles.searchBar__clicked
         }
       >
         {/* search Icon */}
@@ -33,6 +31,7 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         />
         {/* Input field */}
         <TextInput
+          returnKeyType="search"
           style={styles.input}
           placeholder="Search"
           value={searchPhrase}
@@ -48,18 +47,6 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
           }}/>
         )}
       </View>
-      {/* cancel button, depending on whether the search bar is clicked or not */}
-      {clicked && (
-        <View>
-          <Button
-            title="Cancel"
-            onPress={() => {
-              Keyboard.dismiss();
-              setClicked(false);
-            }}
-          ></Button>
-        </View>
-      )}
     </View>
   );
 };
@@ -86,7 +73,7 @@ const styles = StyleSheet.create({
     searchBar__clicked: {
       padding: 10,
       flexDirection: "row",
-      width: "80%",
+      width: "100%",
       backgroundColor: "#d9dbda",
       borderRadius: 15,
       alignItems: "center",
@@ -95,6 +82,6 @@ const styles = StyleSheet.create({
     input: {
       fontSize: 20,
       marginLeft: 10,
-      width: "80%",
+      width: "85%",
     },
   }); 

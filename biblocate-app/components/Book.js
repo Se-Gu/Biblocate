@@ -7,9 +7,9 @@ import books from '../data/Data';
 
 const transition = (
     <Transition.Together>
-        <Transition.In type='fade' durationMs={200}/>
+        <Transition.In type='fade' durationMs={100}/>
         <Transition.Change/>
-        <Transition.Out type='fade' durationMs={200}/>
+        <Transition.Out type='fade' durationMs={100}/>
     </Transition.Together>
 );
 
