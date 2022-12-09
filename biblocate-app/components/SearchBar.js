@@ -1,10 +1,11 @@
 // SearchBar.js
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
-const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
-  
+const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, setDetails}) => {
+  inputReference = useRef(null);
+
   useEffect(() => {
     const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
       setClicked(false);
@@ -13,7 +14,6 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
       hideSubscription.remove();
     };
   }, []);
-
 
   return (
     <View style={styles.container}>
@@ -31,6 +31,7 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         />
         {/* Input field */}
         <TextInput
+          ref={inputReference}
           returnKeyType="search"
           style={styles.input}
           placeholder="Search"
@@ -38,12 +39,14 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
           onChangeText={setSearchPhrase}
           onFocus={() => {
             setClicked(true);
+            setDetails(false);
           }}
         />
         {/* cross Icon, depending on whether the search bar is clicked or not */}
-        {clicked && (
+        {searchPhrase.trim().length !== 0 && (
           <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
-              setSearchPhrase("")
+              setSearchPhrase("");
+              inputReference.current.focus();
           }}/>
         )}
       </View>
@@ -55,7 +58,10 @@ export default SearchBar;
 //
 const styles = StyleSheet.create({
     container: {
-      margin: 15,
+      margin: 5,
+      marginBottom: 5,
+      marginLeft: 10,
+      marginRight: 10,
       justifyContent: "flex-start",
       alignItems: "center",
       flexDirection: "row",

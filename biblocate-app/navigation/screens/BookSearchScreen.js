@@ -1,31 +1,49 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, Keyboard } from 'react-native'
-import React, { useState } from 'react'
-import Book from '../../components/Book';
-import books from '../../data/Data';
-import SearchBar from '../../components/SearchBar';
-
-const BookSearchScreen = () => {
-    const [clicked, setClicked] = useState(false);
+import {
+    View,
+    SafeAreaView,
+    ScrollView,
+    Keyboard,
+  } from "react-native";
+  import React, { useState } from "react";
+  import BookList from "../../components/BookList";
+  import SearchBar from "../../components/SearchBar";
+  import Animated, {
+    FadeInUp,
+    Easing,
+  } from "react-native-reanimated";
+  
+  const BookSearchScreen = () => {
+    const [clicked, setClicked] = useState(true);
     const [searchPhrase, setSearchPhrase] = useState("");
-
+    const [details, setDetails] = useState(false);
+  
     return (
-        <SafeAreaView>
-            <SearchBar 
-                clicked={clicked} 
-                searchPhrase={searchPhrase} 
-                setSearchPhrase={setSearchPhrase}
-                setClicked={setClicked} 
+      <SafeAreaView>
+        <Animated.View
+          layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
+        > 
+            <SearchBar
+            clicked={clicked}
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            setClicked={setClicked}
+            setDetails={setDetails}
             ></SearchBar>
-            <ScrollView onScrollBeginDrag={() => {
-                console.log("dismissed");
-                Keyboard.dismiss();
-            }}
-            keyboardShouldPersistTaps='handled'>
-                <Book></Book>
-            </ScrollView>
-        </SafeAreaView>
-    )
-}
-
-
-export default BookSearchScreen;
+        </Animated.View>
+        <ScrollView
+        onScrollBeginDrag={() => {
+            Keyboard.dismiss();
+        }}
+        keyboardShouldPersistTaps="handled"
+        >
+            <BookList
+                details={details}
+                setDetails={setDetails}
+            ></BookList>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  };
+  
+  export default BookSearchScreen;
+  
