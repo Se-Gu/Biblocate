@@ -19,7 +19,7 @@ const BookList = ({details, setDetails}) => {
         return (
             <Animated.View
             key={book.id}
-            layout={Layout.duration(400).easing(Easing.out(Easing.poly(3)))}
+            layout={Layout.duration(450).easing(Easing.out(Easing.poly(3)))}
             >
                 {
                     details ? (
