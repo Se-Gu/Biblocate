@@ -5,7 +5,7 @@ import BookSearchScreen from "./BookSearchScreen";
 const InfoScreen = () => {
   return (
     <View>
-      <BookSearchScreen/>
+      <BookSearchScreen />
     </View>
   );
 };

@@ -1,65 +1,65 @@
-import {
-    View,
-    SafeAreaView,
-    ScrollView,
-    Keyboard,
-  } from "react-native";
-  import React, { useState } from "react";
-  import BookList from "../../components/BookList";
-  import SearchBar from "../../components/SearchBar";
-  import Animated, {
-    FadeInUp,
-    Easing,
-  } from "react-native-reanimated";
+import { View, SafeAreaView, ScrollView, Keyboard, Button } from "react-native";
+import React, { useState } from "react";
+import BookList from "../../components/BookList";
+import SearchBar from "../../components/SearchBar";
+import Animated, {
+  FadeInUp,
+  FadeInDown,
+  Easing,
+  Layout,
+} from "react-native-reanimated";
 import AdvancedSearch from "../../components/AdvancedSearch";
-  
-  const BookSearchScreen = () => {
-    const [clicked, setClicked] = useState(true);
-    const [searchPhrase, setSearchPhrase] = useState("");
-    const [details, setDetails] = useState(false);
-    const [advancedSearch, setAdvancedSearch] = useState(true);
-  
-    return (
-      <SafeAreaView>
+import { Title } from "react-native-paper";
 
+const BookSearchScreen = () => {
+  const [clicked, setClicked] = useState(true);
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [details, setDetails] = useState(false);
+  const [advancedSearch, setAdvancedSearch] = useState(false);
+
+  return (
+    <SafeAreaView>
+      <Animated.View
+        layout={Layout.duration(400).easing(Easing.out(Easing.poly(3)))}
+      >
         {advancedSearch ? (
-        <Animated.View
-          layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
-        > 
-<AdvancedSearch 
-          advancedSearch={advancedSearch}
-          setAdvancedSearch={setAdvancedSearch}
+          <AdvancedSearch
+            advancedSearch={advancedSearch}
+            setAdvancedSearch={setAdvancedSearch}
           />
-        </Animated.View>
         ) : (
-<View>
-                  <Animated.View
-          layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
-        > 
+          <View>
+            <Button
+              onPress={() => {
+                setAdvancedSearch(!advancedSearch);
+                console.log(advancedSearch);
+              }}
+              title="Advanced"
+            />
             <SearchBar
-            clicked={clicked}
-            searchPhrase={searchPhrase}
-            setSearchPhrase={setSearchPhrase}
-            setClicked={setClicked}
-            setDetails={setDetails}
-            ></SearchBar>
-        </Animated.View>
-        <ScrollView
-        onScrollBeginDrag={() => {
-            Keyboard.dismiss();
-        }}
-        keyboardShouldPersistTaps="handled"
-        >
-            <BookList
-                details={details}
-                setDetails={setDetails}
-            ></BookList>
-        </ScrollView>
-</View>
+              clicked={clicked}
+              searchPhrase={searchPhrase}
+              setSearchPhrase={setSearchPhrase}
+              setClicked={setClicked}
+              setDetails={setDetails}
+            />
+            <Animated.View
+              layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
+            >
+              <ScrollView
+                onScrollBeginDrag={() => {
+                  Keyboard.dismiss();
+                }}
+                keyboardShouldPersistTaps="handled"
+              >
+                <BookList details={details} setDetails={setDetails}></BookList>
+              </ScrollView>
+            </Animated.View>
+          </View>
         )}
-      </SafeAreaView>
-    );
-  };
-  
-  export default BookSearchScreen;
-  
+      </Animated.View>
+    </SafeAreaView>
+  );
+};
+
+export default BookSearchScreen;
