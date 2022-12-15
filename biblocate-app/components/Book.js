@@ -4,14 +4,13 @@ import {
     Keyboard,
     View,
 } from "react-native";
-import React from "react";
+import React, {useRef} from "react";
 import { Button, Card, Title, Paragraph } from "react-native-paper";
+import Animated , {Layout, Easing, Transition, Transitioning} from "react-native-reanimated";
 
 
 const Book = ({book, index, currentIndex, setCurrentIndex, setDetails, details}) => {
-    
     return (
-        <View>
     <Card style={ index === currentIndex ? ( details ? styles.details : styles.expandedBook) : styles.collapsedBook}>
         <TouchableOpacity 
             onPress={() => {
@@ -31,14 +30,7 @@ const Book = ({book, index, currentIndex, setCurrentIndex, setDetails, details})
                 )}
                 { details && (
                     <React.Fragment>
-                        <Paragraph>Available: {book.available}</Paragraph>
-                        <Paragraph style={{ marginBottom: 15 }}>{book.summary}</Paragraph>
-                        <Paragraph>Available: {book.available}</Paragraph>
-                        <Paragraph style={{ marginBottom: 15 }}>{book.summary}</Paragraph>
-                        <Paragraph>Available: {book.available}</Paragraph>
-                        <Paragraph style={{ marginBottom: 15 }}>{book.summary}</Paragraph>
-                        <Paragraph>Available: {book.available}</Paragraph>
-                        <Paragraph style={{ marginBottom: 15 }}>{book.summary}</Paragraph>
+                        <Paragraph style={{ marginBottom: 15 }}>{book.details}</Paragraph>
                     </React.Fragment>
                 )}
             </Card.Content>
@@ -52,6 +44,7 @@ const Book = ({book, index, currentIndex, setCurrentIndex, setDetails, details})
                 <Button
                     onPress={() => {
                     setDetails(true);
+                setCurrentIndex(index);
                     }}
                 >
                     Details
@@ -60,9 +53,6 @@ const Book = ({book, index, currentIndex, setCurrentIndex, setDetails, details})
                 </Card.Actions>
             )}
     </Card>
-    <View>
-    </View>
-</View>
     )
 }
 

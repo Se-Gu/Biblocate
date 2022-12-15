@@ -11,15 +11,29 @@ import {
     FadeInUp,
     Easing,
   } from "react-native-reanimated";
+import AdvancedSearch from "../../components/AdvancedSearch";
   
   const BookSearchScreen = () => {
     const [clicked, setClicked] = useState(true);
     const [searchPhrase, setSearchPhrase] = useState("");
     const [details, setDetails] = useState(false);
+    const [advancedSearch, setAdvancedSearch] = useState(true);
   
     return (
       <SafeAreaView>
+
+        {advancedSearch ? (
         <Animated.View
+          layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
+        > 
+<AdvancedSearch 
+          advancedSearch={advancedSearch}
+          setAdvancedSearch={setAdvancedSearch}
+          />
+        </Animated.View>
+        ) : (
+<View>
+                  <Animated.View
           layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
         > 
             <SearchBar
@@ -41,6 +55,8 @@ import {
                 setDetails={setDetails}
             ></BookList>
         </ScrollView>
+</View>
+        )}
       </SafeAreaView>
     );
   };

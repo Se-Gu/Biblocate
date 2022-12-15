@@ -1,14 +1,13 @@
 // SearchBar.js
 import React, {useEffect, useRef} from "react";
-import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
+import { StyleSheet, TextInput, View, Keyboard, Button, Text } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
-const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, setDetails}) => {
+const InputField = ({placeHolderText, textInput, setTextInput}) => {
   inputReference = useRef(null);
 
   useEffect(() => {
     const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
-      setClicked(false);
     });
     return () => {
       hideSubscription.remove();
@@ -17,35 +16,26 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, setDetai
 
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>{placeHolderText}</Text>
       <View
         style={
             styles.searchBar__clicked
         }
       >
-        {/* search Icon */}
-        <Feather
-          name="search"
-          size={20}
-          color="black"
-          style={{ marginLeft: 1 }}
-        />
         {/* Input field */}
         <TextInput
           ref={inputReference}
-          returnKeyType="search"
           style={styles.input}
-          placeholder="Search by keyword"
-          value={searchPhrase}
-          onChangeText={setSearchPhrase}
+          placeholder={placeHolderText}
+          value={textInput}
+          onChangeText={setTextInput}
           onFocus={() => {
-            setClicked(true);
-            setDetails(false);
           }}
         />
         {/* cross Icon, depending on whether the search bar is clicked or not */}
-        {searchPhrase.trim().length !== 0 && (
-          <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
-              setSearchPhrase("");
+        {textInput.trim().length !== 0 && (
+          <Entypo name="cross" size={20} color="black" style={{ marginLeft: "auto", marginRight: 3}} onPress={() => {
+              setTextInput("");
               inputReference.current.focus();
           }}/>
         )}
@@ -53,10 +43,14 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked, setDetai
     </View>
   );
 };
-export default SearchBar;
+export default InputField;
 
 //
 const styles = StyleSheet.create({
+    text: {
+      fontSize: 18,
+      marginBottom: 3,
+    },
     container: {
       margin: 5,
       marginBottom: 5,
@@ -64,27 +58,28 @@ const styles = StyleSheet.create({
       marginRight: 10,
       justifyContent: "flex-start",
       alignItems: "center",
-      flexDirection: "row",
+      flexDirection: "column",
     },
     searchBar__unclicked: {
       padding: 10,
       flexDirection: "row",
       backgroundColor: "#d9dbda",
-      borderRadius: 15,
-      alignItems: "center",
+      borderRadius: 7,
+      alignItems: "right",
     },
     searchBar__clicked: {
       padding: 10,
       flexDirection: "row",
       width: "100%",
       backgroundColor: "#d9dbda",
-      borderRadius: 15,
-      alignItems: "center",
-      justifyContent: "start",
+      borderRadius: 7,
+      alignItems: "stretch"
     },
     input: {
       fontSize: 20,
       marginLeft: 10,
-      width: "85%",
+      overflow: "auto",
+      width: "90%",
+      alignItems: "stretch"
     },
   }); 
