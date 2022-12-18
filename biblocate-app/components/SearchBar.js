@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
-    justifyContent: "start",
+    justifyContent: "flex-start",
   },
   input: {
     fontSize: 20,
