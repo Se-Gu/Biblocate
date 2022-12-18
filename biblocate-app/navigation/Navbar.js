@@ -1,14 +1,25 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
-import SearchScreen from "./screens/InfoScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import InfoScreen from "./screens/InfoScreen";
+import BookSearchScreen from "./screens/BookSearchScreen";
+import CoffeeBreakEntranceScreen from "./screens/CoffeeBreakEntranceScreen";
+import CoffeeBreakRooftopScreen from "./screens/CoffeeBreakRooftopScreen";
+import LibraryExitScreen from "./screens/LibraryExitScreen";
+import RoomSearchScreen from "./screens/RoomSearchScreen";
+import StationaryStoreScreen from "./screens/StationaryStoreScreen";
 
 const Tabs = createBottomTabNavigator();
 
 const homeName = "Home";
 const infoName = "Info";
+const searchBookName = "Search a Book";
+const coffeeBreakEntranceName = "CoffeeBreak at the Entrance";
+const coffeeBreakRooftopName = "CoffeeBreak at the Rooftop";
+const libraryExitName = "Exit the Library";
+const searchRoomName = "Search a Room";
+const stationaryStoreName = "Stationary Store";
 
 const Navbar = () => {
   return (
@@ -49,6 +60,48 @@ const Navbar = () => {
     >
       <Tabs.Screen name={homeName} component={HomeScreen} />
       <Tabs.Screen name={infoName} component={InfoScreen} />
+      <Tabs.Screen
+        name={searchBookName}
+        component={BookSearchScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={coffeeBreakEntranceName}
+        component={CoffeeBreakEntranceScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={coffeeBreakRooftopName}
+        component={CoffeeBreakRooftopScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={libraryExitName}
+        component={LibraryExitScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={searchRoomName}
+        component={RoomSearchScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={stationaryStoreName}
+        component={StationaryStoreScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
     </Tabs.Navigator>
   );
 };
