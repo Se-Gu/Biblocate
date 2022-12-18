@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     marginLeft: 10,
-    overflow: "auto",
     width: "90%",
     alignItems: "stretch",
   },
