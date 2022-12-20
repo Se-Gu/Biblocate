@@ -1,4 +1,10 @@
-import { StyleSheet, TouchableOpacity, Keyboard, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  View,
+  Text,
+} from "react-native";
 import React, { useRef } from "react";
 import { Button, Card, Title, Paragraph } from "react-native-paper";
 import Animated, {
@@ -42,12 +48,114 @@ const Book = ({
           {index === currentIndex && (
             <React.Fragment>
               <Paragraph>Available: {book.available}</Paragraph>
-              <Paragraph style={{ marginBottom: 15 }}>{book.summary}</Paragraph>
             </React.Fragment>
           )}
           {details && (
             <React.Fragment>
-              <Paragraph style={{ marginBottom: 15 }}>{book.details}</Paragraph>
+              {book.isbn ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>ISBN: {book.isbn}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.edition ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Edition: {book.edition}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.callNumber ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Call Number: {book.callNumber}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.title ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Title: {book.title}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.uniformTitle ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Uniform Title: {book.uniformTitle}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.author ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Author: {book.author}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.addedAuthor ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Added Author: {book.addedAuthor.toString()}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.publicationInfo ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>
+                    Publication Info: {book.publicationInfo.toString()}
+                  </Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.personalSubject ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>
+                    Personal Subject: {book.personalSubject.toString()}
+                  </Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.physicalDescription ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Physical Description: {book.physicalDescription}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.series ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Series: {book.series}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.type ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Type: {book.type}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.subjectTerm ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>Subject Terms: {book.subjectTerm.toString()}</Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
+              {book.geographicTerm ? (
+                <Paragraph style={{ marginBottom: 15 }}>
+                  <Text>
+                    Geographic Terms: {book.geographicTerm.toString()}
+                  </Text>
+                </Paragraph>
+              ) : (
+                ""
+              )}
             </React.Fragment>
           )}
         </Card.Content>

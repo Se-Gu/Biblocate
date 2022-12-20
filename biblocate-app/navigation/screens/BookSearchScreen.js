@@ -18,47 +18,46 @@ const BookSearchScreen = () => {
   const [advancedSearch, setAdvancedSearch] = useState(false);
 
   return (
-    <SafeAreaView>
-      <Animated.View
-        layout={Layout.duration(400).easing(Easing.out(Easing.poly(3)))}
-      >
-        {advancedSearch ? (
-          <AdvancedSearch
-            advancedSearch={advancedSearch}
-            setAdvancedSearch={setAdvancedSearch}
+    <Animated.View
+      layout={Layout.duration(400).easing(Easing.out(Easing.poly(3)))}
+    >
+      {advancedSearch ? (
+        <AdvancedSearch
+          advancedSearch={advancedSearch}
+          setAdvancedSearch={setAdvancedSearch}
+        />
+      ) : (
+        <View>
+          <Button
+            onPress={() => {
+              setAdvancedSearch(!advancedSearch);
+              console.log(advancedSearch);
+            }}
+            title="Advanced"
           />
-        ) : (
-          <View>
-            <Button
-              onPress={() => {
-                setAdvancedSearch(!advancedSearch);
-                console.log(advancedSearch);
+          <SearchBar
+            clicked={clicked}
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            setClicked={setClicked}
+            setDetails={setDetails}
+          />
+          <Animated.View
+            layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
+          >
+            <ScrollView
+              style={{ marginBottom: 290 }}
+              onScrollBeginDrag={() => {
+                Keyboard.dismiss();
               }}
-              title="Advanced"
-            />
-            <SearchBar
-              clicked={clicked}
-              searchPhrase={searchPhrase}
-              setSearchPhrase={setSearchPhrase}
-              setClicked={setClicked}
-              setDetails={setDetails}
-            />
-            <Animated.View
-              layout={FadeInUp.duration(400).easing(Easing.out(Easing.poly(3)))}
+              keyboardShouldPersistTaps="handled"
             >
-              <ScrollView
-                onScrollBeginDrag={() => {
-                  Keyboard.dismiss();
-                }}
-                keyboardShouldPersistTaps="handled"
-              >
-                <BookList details={details} setDetails={setDetails}></BookList>
-              </ScrollView>
-            </Animated.View>
-          </View>
-        )}
-      </Animated.View>
-    </SafeAreaView>
+              <BookList details={details} setDetails={setDetails}></BookList>
+            </ScrollView>
+          </Animated.View>
+        </View>
+      )}
+    </Animated.View>
   );
 };
 

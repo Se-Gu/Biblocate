@@ -1,301 +1,302 @@
 export default books = [
   {
     id: 1,
-    title: "AVOBENZONE",
-    author: "Cohen",
-    summary:
-      "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-    available: 0,
-    details:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
+    isbn: 9780888030580,
+    callNumber: "DR701.A5 H6 1978",
+    title:
+      "Selected writings of the great Marxist-Leninist Enver Hoxha on the life and work of the party, the state and the people of the People's Socialist Republic of Albania, 1971-1977.",
+    author: "Hoxha, Enver",
+    publicationInfo: "Toronto : Norman Bethune Institute, 1978.",
+    physicalDesc: "711 p.",
+    type: "Book",
+    subjectTerm: ["communism", "Albania"],
+    geographicTerm: ["Albania", "Politics and government", "1944-1990"],
+    available: 1,
   },
   {
     id: 2,
-    title: "Cyclobenzaprine Hydrochloride",
-    author: "Silverlock",
-    summary:
-      "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    available: 4,
-    details:
-      "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+    isbn: 9780674362321,
+    callNumber: "JC73 .M3913 1990",
+    title: "The Greek discovery of politics",
+    uniform_title: "Entstehung des Politischen bei den Griechen. English",
+    author: "Meier, Christian",
+    publicationInfo: "Cambridge, Mass. : Harvard University Press, 1990.",
+    physicalDesc: "ix, 305 p. ; 24 cm.",
+    type: "Book",
+    subjectTerm: ["Political science", "Greece", "History"],
+    geographicTerm: ["Greece", "Politics and government", "To 146 B.C."],
+    available: 1,
   },
   {
     id: 3,
-    title: "Metoclopramide Hydrochloride",
-    author: "Townend",
-    summary:
-      "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-    available: 4,
-    details:
-      "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+    isbn: 9780521293372,
+    callNumber: "JA81 .S628 1990 V.1",
+    title: "The foundations of modern political thought",
+    author: "Skinner, Quentin",
+    publicationInfo:
+      "Cambridge ; New York : Cambridge University Press, 1990, c1978.",
+    physicalDesc: "2 v.",
+    contents: "Contents:V.1 The renaissance -- V.2 The age of reformation.",
+    type: "Book",
+    subjectTerm: ["Political science", "History", "Collected works"],
+    available: 1,
   },
   {
     id: 4,
-    title: "Oxygen",
-    author: "Tole",
-    summary:
-      "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-    available: 4,
-    details:
-      "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
+    isbn: 9780486298689,
+    callNumber: "B3313.J43 E5 1997",
+    title: "Beyond good and evil : prelude to a philosophy of the future",
+    uniformTitle: "Jenseits von Gut und Böse. English",
+    seriesTitle: "Dover thrift editions",
+    author: "Nietzsche, Friedrich Wilhelm",
+    addedAuthor: "Zimmern, Helen",
+    publicationInfo: "Mineola, N.Y. : Dover Publications, 1997.",
+    physicalDesc: "x, 150 p. ; 21 cm.",
+    series: "Dover thrift editions",
+    type: "Book",
+    subjectTerm: ["Ethics"],
+    available: 1,
   },
   {
     id: 5,
-    title: "CEFOXITIN SODIUM",
-    author: "Wison",
-    summary:
-      "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    isbn: 9780195037944,
+    callNumber: "E162",
+    title: "Albion's seed : four British folkways in America",
+    author: "Fischer, David Hackett",
+    publicationInfo: "New York : Oxford University Press, 1989.",
+    physicalDesc: "xxi, 946 p. : ill. ; 25 cm.",
+    series: "America, a cultural history ; v. 1",
+    type: "Book",
+    subjectTerm: ["United States", "Civilization", "English influences"],
+    geographicTerm: [" United States", "Civilization", "To 1783"],
     available: 1,
-    details:
-      "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
   },
   {
     id: 6,
-    title: "Aconitum Bryonia",
-    author: "Chene",
-    summary:
-      "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-    available: 0,
-    details:
-      "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
+    isbn: 9780765600813,
+    callNumber: "DS806 .M637 1998",
+    title: "Re-inventing Japan : time, space, nation",
+    seriesTitle: "Japan in the modern world",
+    author: "Morris-Suzuki, Tessa",
+    publicationInfo: "Armonk, N.Y. : M.E. Sharpe, c1998.",
+    physicalDesc: "vii, 236 p. : ill., map ; 24 cm.",
+    series: "Japan in the modern world",
+    type: "Book",
+    geographicTerm: "Japan",
+    available: 1,
   },
   {
     id: 7,
-    title: "Titanium Dioxide and Zinc Oxide",
-    author: "Nussgen",
-    summary:
-      "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-    available: 4,
-    details:
-      "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    isbn: 9780944094235,
+    callNumber: "NK8643.45 .S54 1997",
+    title: "Sign gallery",
+    author: "Signs of the Times",
+    publicationInfo: "Cincinnati, OH : ST Publications, c1997.",
+    physicalDescription: "172 p. : ill.",
+    type: "Book",
+    available: 1,
   },
   {
     id: 8,
-    title: "Ranitidine",
-    author: "Axtonne",
-    summary:
-      "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-    available: 4,
-    details:
-      "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+    isbn: 9781405129473,
+    edition: "2nd ed.",
+    callNumber: "W50 .B4582 2006",
+    title: "Bioethics : an anthology",
+    author: "Kuhse, Helga",
+    addedAuthor: ["Kuhse, Helga.", "Singer, Peter, 1946-"],
+    publicationInfo: "Malden, MA ; Oxford : Blackwell Pub., 2006.",
+    physicalDescription: "xvii, 738 pages : illustrations ; 26 cm.",
+    series: "Blackwell philosophy anthologies",
+    type: "Book",
+    subjectTerm: ["Medical ethics.", "Bioethics."],
+    available: 1,
   },
   {
     id: 9,
-    title: "Octinoxate and Oxybenzone",
-    author: "Clery",
-    summary:
-      "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    available: 2,
-    details:
-      "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+    isbn: 9789757245001,
+    callNumber: "REF/BP100 .A1",
+    title: "Qur'an al-Karim",
+    uniformTitle: "Koran",
+    publicationInfo: "İstanbul : Hayrât Vakfı, [n.d.].",
+    physicalDescription: "604, 10 p.",
+    type: "Book",
+    subjectTerm: "Koran",
+    available: 1,
   },
   {
     id: 10,
-    title: "TECHNETIUM TC-99M SODIUM PERTECHNETATE",
-    author: "Brekonridge",
-    summary:
-      "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-    available: 2,
-    details:
-      "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+    isbn: 9780195138573,
+    callNumber: "BF311 .M5412 2001",
+    title: "Mindware : an introduction to the philosophy of cognitive science.",
+    author: "Clark, Andy",
+    publicationInfo: "New York : Oxford University Press, 2001.",
+    physicalDescription: "xiii, 210 p.",
+    type: "Book",
+    subjectTerm: "Cognitive science",
+    available: 1,
   },
   {
     id: 11,
-    title: "Salicylic Acid",
-    author: "Feare",
-    summary: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-    available: 2,
-    details:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    isbn: 9780979074424,
+    edition: "1st ed.",
+    callNumber: "BF311 .J396 2012",
+    title: "The Julian Jaynes collection",
+    author: "Jaynes, Julian",
+    addedAuthor: "Kuijsten, Marcel",
+    publicationInfo: "Henderson, NV : Julian Jaynes Society, ©2012.",
+    physicalDescription: "368 pages : illustrations ; 24 cm.",
+    contents:
+      "Introduction. -- Part I: Biography. -- Part II: Articles & lectures. -- Part III: Interviews. -- Part IV: Discussion. -- Index.",
+    type: "Book",
+    subjectTerm: "Consciousness",
+    available: 1,
   },
   {
     id: 12,
-    title: "albuterol sulfate",
-    author: "Coils",
-    summary:
-      "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-    available: 3,
-    details:
-      "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+    isbn: 9780199693238,
+    callNumber: "B1497 .A46 2011",
+    title: "New letters of David Hume",
+    author: "Klibansky, Raymond",
+    addedAuthor: [
+      "Klibansky, Raymond, 1905-2005.",
+      "Mossner, Ernest Campbell, 1907-",
+    ],
+    publicationInfo: "Oxford : Oxford University Press, 2011, c1954.",
+    physicalDescription: "xxxiv, 253 pages ; 22 cm.",
+    type: "Book",
+    personalSubject: [
+      "Hume, David, 1711-1776.",
+      "Hume, David, 1711-1776-Correspondence.",
+    ],
+    subjectTerm: ["Philosophers", "Great Britain", "Correspondence."],
+    available: 1,
   },
   {
     id: 13,
-    title: "Fentanyl",
-    author: "D'Ambrosi",
-    summary:
-      "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+    callNumber: "PA2061 .R64 1976 V.1/C.1",
+    title: "Lingua Latina= Latince ders kitabı",
+    author: "Rohde, Georg",
+    addedAuthor: "Sinanoğlu, Samim",
+    publicationInfo: "Ankara: Ankara Üniversitesi, 1976.",
+    physicalDescription: "v.",
+    type: "Book",
     available: 1,
-    details:
-      "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
   },
   {
     id: 14,
-    title: "Carisoprodol",
-    author: "McCaskill",
-    summary:
-      "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    available: 2,
-    details:
-      "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+    isbn: 9780197258910,
+    callNumber: "PA2891.L3 2012",
+    title: "Revised medieval Latin word-list from British and Irish sources.",
+    author: "Latham, R. E.",
+    addedAuthor: [
+      "Baxter, James Houston",
+      "Medieval Latin word-list from British and Irish sources.",
+    ],
+    publicationInfo:
+      "London, Published for the British Academy by the Oxford University Press, 2012.",
+    physicalDescription: " xxiii, 524 p. 26 cm.",
+    type: "Book",
+    subjectTerm: [
+      "Latin language, Medieval and modern",
+      "Dictionaries",
+      "English.",
+      "Latin médiéval et moderne (Langue)",
+      "Dictionnaires anglais",
+      "Latin language, Medieval and modern.",
+      "(OCoLC)fst00993284",
+    ],
+    genre: "Dictionaries. (OCoLC)fst01423826",
+    available: 1,
   },
   {
     id: 15,
-    title: "Mercaptopurine",
-    author: "Turbill",
-    summary:
-      "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    available: 2,
-    details:
-      "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+    isbn: 9781107020658,
+    callNumber: "QA803 .A45 2021",
+    title: "The mathematical principles of natural philosophy",
+    uniformTitle: "Principia. English",
+    author: "Newton, Isaac, Sir,1642-1727",
+    addedAuthor: [
+      "Newton, Isaac, Sir,1642-1727",
+      "Leedham-Green, C. R. (Charles Richard)",
+    ],
+    physicalDescription:
+      "xliv, 743 pages : illustrations (black and white) ; 26 cm.",
+    type: "Book",
+    subjectTerm: "Mechanics -- Early works to 1800.",
+    available: 1,
   },
   {
     id: 16,
-    title: "lovastatin",
-    author: "Hedney",
-    summary:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    available: 3,
-    details:
-      "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
+    isbn: 9780399135866,
+    title: "Stranger in a strange land",
+    author: "Heinlein, Robert A.",
+    publicationInfo: "New York, NY : Putnam, c1991.",
+    physicalDescription: " 525 pages.",
+    type: "Book",
+    available: 1,
   },
   {
     id: 17,
-    title: "Avobenzone, Homosalate, Octisalate",
-    author: "Spillman",
-    summary:
-      "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    isbn: 9780312851682,
+    edition: "1st ed.",
+    callNumber: "PS3515.E288 R4 1992",
+    title:
+      "Requiem : new collected works by Robert A. Heinlein and tributes to the grand master",
+    author: "Heinlein, Robert A.",
+    addedAuthor: "Kondo, Yoji",
+    physicalDescription: "viii, 341 p. ; 25 cm.",
+    type: "Book",
+    subjectTerm: "Science fiction, American.",
     available: 1,
-    details:
-      "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
   },
   {
     id: 18,
-    title: "Air",
-    author: "Bonallack",
-    summary:
-      "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    available: 2,
-    details:
-      "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+    isbn: 9780007902149,
+    callNumber: "PA4025.A2 P67 2011",
+    title: "The Iliad",
+    uniformTitle: "Iliad. English",
+    author: "Homer.",
+    addedAuthor: "Pope, Alexander, 1688-1744.",
+    physicalDescription: "lxx, 648 pages.",
+    series: "Collins classics.",
+    type: "Book",
+    subjectTerm: [
+      "Epic poetry, Greek -- Translations into English.",
+      "Achilles (Greek mythology) -- Poetry.",
+      "Trojan War -- Poetry.",
+    ],
+    available: 1,
   },
   {
     id: 19,
-    title: "Sulfamethoxazole and Trimethoprim",
-    author: "Peachment",
-    summary:
-      "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    available: 0,
-    details:
-      "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
+    isbn: 9780582827646,
+    edition: "Educational edition.",
+    callNumber: "EASY/PE1121 .S74 2003",
+    title: "Of mice and men",
+    author: "Steinbeck, John",
+    addedAuthor: "Shillinglaw, Susan.",
+    physicalDescription: "122 pages ; 21 cm",
+    series: "New Longman literature",
+    type: "Book",
+    available: 1,
   },
   {
     id: 20,
-    title: "Oxazepam",
-    author: "Yanshinov",
-    summary:
-      "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    available: 2,
-    details:
-      "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-  },
-  {
-    id: 21,
-    title: "Cyclobenzaprine Hydrochloride",
-    author: "Autin",
-    summary:
-      "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    available: 2,
-    details:
-      "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-  },
-  {
-    id: 22,
-    title: "Acetaminophen, Dextromethorphan HBr, Phenylephrine HCl",
-    author: "Measey",
-    summary:
-      "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    isbn: 9780070004221,
+    callNumber: "QA76.6 .A255 1985",
+    title:
+      "Structure and interpretation of computer programs / Harold Abelson and Gerald Jay Sussman, with Julie Sussman ; foreword by Alan J. Perlis.",
+    seriesTitle: "The MIT electrical engineering and computer science series",
+    author: " Abelson, Harold.",
+    publicationInfo:
+      "Cambridge, Mass. : MIT Press ; New York : McGraw-Hill, c1985.",
+    physicalDescription: "xx, 542 p. : ill. ; 24 cm.",
+    series: "The MIT electrical engineering and computer science series",
+    type: "Book",
+    subjectTerm: [
+      "Electronic digital computers -- Programming.",
+      "LISP (Computer program language)",
+    ],
     available: 1,
-    details:
-      "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.",
-  },
-  {
-    id: 23,
-    title: "ALCOHOL",
-    author: "Stoggell",
-    summary:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    available: 2,
-    details:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-  },
-  {
-    id: 24,
-    title: "Scotch Broom Cytisus scoparius",
-    author: "Leacy",
-    summary:
-      "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    available: 0,
-    details:
-      "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-  },
-  {
-    id: 25,
-    title: "Ropinirole Hydrochloride",
-    author: "Chase",
-    summary:
-      "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-    available: 0,
-    details:
-      "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.",
-  },
-  {
-    id: 26,
-    title: "BUPROPION HYDROCHLORIDE",
-    author: "Rosenfield",
-    summary:
-      "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    available: 1,
-    details:
-      "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-  },
-  {
-    id: 27,
-    title: "AMOXICILLIN",
-    author: "Hickford",
-    summary:
-      "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    available: 3,
-    details:
-      "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
-  },
-  {
-    id: 28,
-    title: "Octinoxate",
-    author: "Govey",
-    summary:
-      "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    available: 4,
-    details:
-      "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-  },
-  {
-    id: 29,
-    title: "Benzalkonium chloride",
-    author: "Suttie",
-    summary:
-      "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    available: 1,
-    details:
-      "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-  },
-  {
-    id: 30,
-    title: "ALCOHOL",
-    author: "Shippard",
-    summary:
-      "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    available: 3,
-    details:
-      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
   },
 ];
