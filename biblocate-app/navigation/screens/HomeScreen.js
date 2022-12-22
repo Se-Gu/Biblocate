@@ -8,7 +8,6 @@ const HomeScreen = ({ navigation }) => {
         source={require("biblocate-app/assets/img/bilkent-library.png")}
         style={{ opacity: 0.7 }}
       />
-      <Text>HomeScreen</Text>
       <Button
         title="Search a Book"
         onPress={() => navigation.navigate("Search a Book")}
