@@ -9,6 +9,7 @@ namespace BiblocateWebAPI.Models
     {
         [Key]
         public Int16 ShelfId { get; set; }
+        [ForeignKey("Room")]
         public Int16 RoomId { get; set; }
         public string LeftCallnameBegin { get; set; }
         public string LeftCallnameEnd { get; set; }
