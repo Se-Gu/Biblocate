@@ -42,6 +42,13 @@ namespace BiblocateWebAPI.Controllers
             return shelf;
         }
 
+        [HttpGet("{roomId}/shelves")]
+        public async Task<ActionResult<IEnumerable<Shelf>>> GetShelvesByRoomId(short roomId)
+        {
+            var shelves = await _context.Shelf.ToListAsync();
+            return shelves.FindAll(s => s.RoomId == roomId);
+        }
+
         // PUT: api/Shelves/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
