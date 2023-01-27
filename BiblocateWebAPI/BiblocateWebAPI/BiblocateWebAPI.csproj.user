@@ -10,5 +10,10 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>BiblocateWebAPI.Data.BiblocateWebAPIDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\Properties\PublishProfiles\Biblocate - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <ActiveDebugProfile>BiblocateWebAPI</ActiveDebugProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
