@@ -3,45 +3,47 @@ import React, { Component, useState, useRef } from "react";
 import Animated, { Layout, Easing } from "react-native-reanimated";
 import books from "../data/Data";
 import Book from "./Book";
+import axios from "axios";
 
 const BookList = ({ details, setDetails }) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const ref = React.useRef();
+  const [bookList, setBookList] = useState([]);
 
-  return (
-    <Animated.View>
-      {books.map((book, index) => {
-        return (
-          <Animated.View
-            key={book.id}
-            layout={Layout.duration(450).easing(Easing.out(Easing.poly(3)))}
-          >
-            {details ? (
-              index === currentIndex && (
-                <Book
-                  book={book}
-                  setCurrentIndex={setCurrentIndex}
-                  currentIndex={currentIndex}
-                  index={index}
-                  setDetails={setDetails}
-                  details={details}
-                />
-              )
-            ) : (
-              <Book
-                book={book}
-                setCurrentIndex={setCurrentIndex}
-                currentIndex={currentIndex}
-                index={index}
-                setDetails={setDetails}
-                details={details}
-              />
-            )}
-          </Animated.View>
-        );
-      })}
-    </Animated.View>
-  );
+  // return (
+  //   <Animated.View>
+  //     {books.map((book, index) => {
+  //       return (
+  //         <Animated.View
+  //           key={book.id}
+  //           layout={Layout.duration(450).easing(Easing.out(Easing.poly(3)))}
+  //         >
+  //           {details ? (
+  //             index === currentIndex && (
+  //               <Book
+  //                 book={book}
+  //                 setCurrentIndex={setCurrentIndex}
+  //                 currentIndex={currentIndex}
+  //                 index={index}
+  //                 setDetails={setDetails}
+  //                 details={details}
+  //               />
+  //             )
+  //           ) : (
+  //             <Book
+  //               book={book}
+  //               setCurrentIndex={setCurrentIndex}
+  //               currentIndex={currentIndex}
+  //               index={index}
+  //               setDetails={setDetails}
+  //               details={details}
+  //             />
+  //           )}
+  //         </Animated.View>
+  //       );
+  //     })}
+  //   </Animated.View>
+  // );
 };
 
 export default BookList;
