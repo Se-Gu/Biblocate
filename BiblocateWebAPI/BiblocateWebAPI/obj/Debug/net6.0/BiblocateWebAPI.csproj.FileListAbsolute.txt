@@ -285,3 +285,4 @@ C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.
 C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\90539\Desktop\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\System.Net.Http.Json.dll
