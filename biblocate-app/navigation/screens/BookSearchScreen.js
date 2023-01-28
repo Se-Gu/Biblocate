@@ -24,27 +24,6 @@ const BookSearchScreen = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [details, setDetails] = useState(false);
   const [advancedSearch, setAdvancedSearch] = useState(false);
-  const [responseText, setResponseText] = useState("nothing");
-
-  // axios
-  //   .get(
-  //     "http://139.179.30.27:8080/symws/rest/standard/searchInfoDesk?clientID=SymWSTestClient&customInfoDesk=CALD&json=true&prettyprint=true"
-  //   )
-  //   .then(function (response) {
-  //     setResponseText(JSON.stringify(response.data.HitlistTitleInfo));
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-
-  axios
-    .get("https://192.168.1.8:8082/api/Books")
-    .then(function (response) {
-      setResponseText(JSON.stringify(response.data.HitlistTitleInfo));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 
   return (
     <Animated.View
@@ -82,9 +61,6 @@ const BookSearchScreen = () => {
               keyboardShouldPersistTaps="handled"
             >
               <BookList details={details} setDetails={setDetails}></BookList>
-              <Card>
-                <Text>{responseText}</Text>
-              </Card>
             </ScrollView>
           </Animated.View>
         </View>

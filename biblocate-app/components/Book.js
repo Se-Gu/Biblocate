@@ -43,115 +43,51 @@ const Book = ({
         }}
       >
         <Card.Content>
-          <Title style={styles.text}>{"📖 " + book.title}</Title>
-          <Paragraph style={styles.text.author}>{book.author}</Paragraph>
+          <Title style={styles.text}>{"📖 " + book.Title}</Title>
+          <Paragraph style={styles.text.author}>{book.Author}</Paragraph>
           {index === currentIndex && (
             <React.Fragment>
-              <Paragraph>Available: {book.available}</Paragraph>
+              <Paragraph>Available: {book.CopiesOnOrder}</Paragraph>
             </React.Fragment>
           )}
           {details && (
             <React.Fragment>
-              {book.isbn ? (
+              {
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>ISBN: {book.isbn}</Text>
+                  <Text>ISBN: {book.ISBN.toString()}</Text>
                 </Paragraph>
-              ) : (
-                ""
-              )}
+              }
               {book.edition ? (
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Edition: {book.edition}</Text>
+                  <Text>Edition: {book.Edition}</Text>
                 </Paragraph>
               ) : (
                 ""
               )}
               {book.callNumber ? (
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Call Number: {book.callNumber}</Text>
+                  <Text>Call Number: {book.CallNumber}</Text>
                 </Paragraph>
               ) : (
                 ""
               )}
               {book.title ? (
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Title: {book.title}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.uniformTitle ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Uniform Title: {book.uniformTitle}</Text>
+                  <Text>Title: {book.Title}</Text>
                 </Paragraph>
               ) : (
                 ""
               )}
               {book.author ? (
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Author: {book.author}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.addedAuthor ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Added Author: {book.addedAuthor.toString()}</Text>
+                  <Text>Author: {book.Author}</Text>
                 </Paragraph>
               ) : (
                 ""
               )}
               {book.publicationInfo ? (
                 <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>
-                    Publication Info: {book.publicationInfo.toString()}
-                  </Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.personalSubject ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>
-                    Personal Subject: {book.personalSubject.toString()}
-                  </Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.physicalDescription ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Physical Description: {book.physicalDescription}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.series ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Series: {book.series}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.type ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Type: {book.type}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.subjectTerm ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>Subject Terms: {book.subjectTerm.toString()}</Text>
-                </Paragraph>
-              ) : (
-                ""
-              )}
-              {book.geographicTerm ? (
-                <Paragraph style={{ marginBottom: 15 }}>
-                  <Text>
-                    Geographic Terms: {book.geographicTerm.toString()}
-                  </Text>
+                  <Text>Publication Info: {book.YearOfPublication}</Text>
                 </Paragraph>
               ) : (
                 ""
