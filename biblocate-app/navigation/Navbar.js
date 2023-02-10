@@ -55,7 +55,6 @@ const Navbar = () => {
           {
             display: "flex",
             backgroundColor: "#5A6EE1",
-            marginTop: 5,
           },
           null,
         ],
