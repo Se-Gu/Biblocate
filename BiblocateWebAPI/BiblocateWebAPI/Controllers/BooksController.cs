@@ -18,71 +18,33 @@ namespace BiblocateWebAPI.Controllers
         private readonly IHttpClientFactory? _clientFactory;
         private readonly BiblocateWebAPIDbContext _context;
 
-        public BooksController(IHttpClientFactory clientFactory,  BiblocateWebAPIDbContext context)
+        public BooksController(IHttpClientFactory clientFactory, BiblocateWebAPIDbContext context)
         {
             _clientFactory = clientFactory;
             _context = context;
         }
 
-        //// GET: api/<BooksController>
-        //[HttpGet]
-        //public async Task<List<Book>> GetBooks()
-        //{
-        //    // set up the client and send request
-        //    var request = new HttpRequestMessage(HttpMethod.Get, "http://139.179.30.27:8080/symws/rest/standard/searchInfoDesk?clientID=SymWSTestClient&customInfoDesk=CALD&json=true&prettyprint=true");
-        //    var client = _clientFactory.CreateClient();
-        //    HttpResponseMessage response = await client.SendAsync(request);
-
-        //    // receive and modify the json response
-        //    var responseText = await response.Content.ReadAsStringAsync();
-        //    var cutoffString = "\"HitlistTitleInfo\" : ";
-        //    var cutoffIndex = responseText.IndexOf(cutoffString) + cutoffString.Length;
-        //    if (cutoffIndex >= 0) responseText = responseText.Substring(cutoffIndex, responseText.Length - cutoffIndex - 1);
-
-        //    // turn the response into a list of Book objects
-        //    var list = JsonConvert.DeserializeObject<List<Book>>(responseText);
-
-        //    // return the list of Book objects
-        //    return list;
-        //}
-
-        [HttpGet]
-        public async Task<string> GetShelfFromCallNumber(string callNumber)
+        // GET: api/<BooksController>
+        [HttpGet("SearchBooks/{searchKey}/{hitsToDisplay}")]
+        public async Task<List<Book>> SearchBooks(string searchKey, int hitsToDisplay)
         {
-            Match dissectAlphaNumerical(string alphaNumerical)
-            {
-                Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
-                return re.Match(alphaNumerical);
-            }
-            int myCompare(string callNumber1, string callNumber2)
-            {
-                var callNumber1A = dissectAlphaNumerical(callNumber1).Groups[1].Value;
-                var callNumber1N = Int32.Parse(dissectAlphaNumerical(callNumber1).Groups[2].Value);
-                var callNumber2A = dissectAlphaNumerical(callNumber2).Groups[1].Value;
-                var callNumber2N = Int32.Parse(dissectAlphaNumerical(callNumber2).Groups[2].Value);
+            // set up the client and send request
+            var requestString = "http://139.179.30.27:8080/symws/rest/standard/searchCatalog?clientID=DS_CLIENT&term1=" + searchKey + "&hitsToDisplay=" + hitsToDisplay +"&includeAvailabilityInfo=true&libraryFilter=UNIVERSITY&&json=true&&prettyprint=true";
+            var request = new HttpRequestMessage(HttpMethod.Get, requestString);
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
 
-                if (string.Compare(callNumber1A, callNumber2A) == 0)
-                {
-                    if (callNumber1N < callNumber2N) return -1;
-                    else if (callNumber1N == callNumber2N) return 0;
-                    else return 1;
-                }
-                else return string.Compare(callNumber1A, callNumber2A);
-            }
-            // remove white space from callNumber
-            var newCallNumber = Regex.Replace(callNumber, @"\s+", "");
+            // receive and modify the json response
+            var responseText = await response.Content.ReadAsStringAsync();
+            var cutoffString = "\"HitlistTitleInfo\" : ";
+            var cutoffIndex = responseText.IndexOf(cutoffString) + cutoffString.Length;
+            if (cutoffIndex >= 0) responseText = responseText.Substring(cutoffIndex, responseText.Length - cutoffIndex - 1);
 
-            var shelfList = await _context.Shelf.ToListAsync();
+            // turn the response into a list of Book objects
+            var list = JsonConvert.DeserializeObject<List<Book>>(responseText);
 
-            foreach (var shelf in shelfList)
-            {
-                bool onTheLeftSide = myCompare(shelf.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.LeftCallNumberEnd, newCallNumber) >= 0;
-                bool onTheRightSide = myCompare(shelf.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.RightCallNumberEnd, newCallNumber) >= 0;
-
-                if (onTheLeftSide) return shelf.ShelfId + "A";
-                else if (onTheRightSide) return shelf.ShelfId + "B";
-            }
-            return "does not exist!";
+            // return the list of Book objects
+            return list;
         }
     }
 }
