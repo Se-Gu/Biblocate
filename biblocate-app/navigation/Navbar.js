@@ -4,6 +4,7 @@ import HomeScreen from "./screens/HomeScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import InfoScreen from "./screens/InfoScreen";
 import BookSearchScreen from "./screens/BookSearchScreen";
+import NewBookSearchScreen from "./screens/NewBookSearchScreen";
 import CoffeeBreakEntranceScreen from "./screens/CoffeeBreakEntranceScreen";
 import CoffeeBreakRooftopScreen from "./screens/CoffeeBreakRooftopScreen";
 import LibraryExitScreen from "./screens/LibraryExitScreen";
@@ -64,7 +65,7 @@ const Navbar = () => {
       <Tabs.Screen name={infoName} component={InfoScreen} />
       <Tabs.Screen
         name={searchBookName}
-        component={BookSearchScreen}
+        component={NewBookSearchScreen}
         options={{
           tabBarButton: () => null, //like this
         }}
@@ -92,7 +93,7 @@ const Navbar = () => {
       />
       <Tabs.Screen
         name={searchRoomName}
-        component={RoomSearchScreen}
+        component={BookSearchScreen}
         options={{
           tabBarButton: () => null, //like this
         }}
