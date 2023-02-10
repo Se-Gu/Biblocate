@@ -45,7 +45,7 @@ const Navbar = () => {
         },
         tabBarStyle: { position: "absolute" },
         tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "grey",
+        tabBarInactiveTintColor: "white",
         tabBarLabelStyle: {
           paddingBottom: 10,
           fontSize: 10,
@@ -53,6 +53,8 @@ const Navbar = () => {
         tabBarStyle: [
           {
             display: "flex",
+            backgroundColor: "#5A6EE1",
+            marginTop: 5,
           },
           null,
         ],
