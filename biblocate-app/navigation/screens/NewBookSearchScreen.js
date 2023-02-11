@@ -1,6 +1,12 @@
-import { StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  ActivityIndicator,
+  View,
+} from "react-native";
 import { SearchBar, ListItem } from "@rneui/themed";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -9,6 +15,7 @@ const NewBookSearchScreen = () => {
   const [searchValue, setSearchValue] = useState("");
   const [bookList, setBookList] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const handleSearchValueChange = (search) => {
     setSearchValue(search);
   };
@@ -25,10 +32,10 @@ const NewBookSearchScreen = () => {
       setSearchLoading(true);
       axios
         .get(
-          `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/1`
+          `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/${page}`
         )
         .then(function (response) {
-          setBookList(response?.data);
+          setBookList([...bookList, ...response?.data]);
         })
         .catch(function (error) {
           console.log(error);
@@ -38,10 +45,14 @@ const NewBookSearchScreen = () => {
         });
     }
   };
+
+  useEffect(() => {
+    handleSubmitSearch();
+  }, [page]);
+
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar
-        showLoading={searchLoading}
         placeholder="Title"
         lightTheme="true"
         value={searchValue}
@@ -50,29 +61,30 @@ const NewBookSearchScreen = () => {
         platform="ios"
         onSubmitEditing={handleSubmitSearch}
       />
-      <ScrollView style={styles.scrollView}>
-        {bookList.map((book) => {
+      <FlatList
+        style={{ opacity: 1 - searchLoading * 0.5 }}
+        pointerEvents={searchLoading ? "none" : "auto"}
+        data={bookList}
+        onEndReached={() => setPage(page + 1)}
+        onEndReachedThreshold={0.5}
+        renderItem={({ item }) => {
           return (
             <ListItem
-              key={book.TitleID}
+              key={item?.TitleID}
               containerStyle={styles.listItem}
               bottomDivider
             >
-              <Ionicons
-                name="location"
-                color="white"
-                style={{ size: "large" }}
-              />
               <ListItem.Content>
                 <ListItem.Title onLongPress={handleLongPressTitle}>
-                  {book.Title}
+                  {item?.Title}
                 </ListItem.Title>
-                <ListItem.Subtitle>{book.Author}</ListItem.Subtitle>
+                <ListItem.Subtitle>{item?.Author}</ListItem.Subtitle>
               </ListItem.Content>
             </ListItem>
           );
-        })}
-      </ScrollView>
+        }}
+      />
+      <View>{searchLoading && <ActivityIndicator size="large" />}</View>
     </SafeAreaView>
   );
 };
@@ -87,6 +99,15 @@ const styles = StyleSheet.create({
   listItem: {
     backgroundColor: "#9999ff",
     marginBottom: 8,
+  },
+  loading: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
