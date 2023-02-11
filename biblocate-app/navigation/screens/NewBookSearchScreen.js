@@ -4,8 +4,9 @@ import {
   FlatList,
   ActivityIndicator,
   View,
+  Text,
 } from "react-native";
-import { SearchBar, ListItem } from "@rneui/themed";
+import { SearchBar, ListItem, Icon } from "@rneui/themed";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import * as Clipboard from "expo-clipboard";
@@ -16,6 +17,8 @@ const NewBookSearchScreen = () => {
   const [bookList, setBookList] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [expanded, setExpanded] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
   const handleSearchValueChange = (search) => {
     setSearchValue(search);
   };
@@ -62,25 +65,61 @@ const NewBookSearchScreen = () => {
         onSubmitEditing={handleSubmitSearch}
       />
       <FlatList
-        style={{ opacity: 1 - searchLoading * 0.5 }}
+        style={{ opacity: 1 - searchLoading * 0.7 }}
         pointerEvents={searchLoading ? "none" : "auto"}
         data={bookList}
         onEndReached={() => setPage(page + 1)}
         onEndReachedThreshold={0.5}
-        renderItem={({ item }) => {
+        renderItem={({ item, index }) => {
           return (
-            <ListItem
-              key={item?.TitleID}
-              containerStyle={styles.listItem}
-              bottomDivider
-            >
-              <ListItem.Content>
-                <ListItem.Title onLongPress={handleLongPressTitle}>
-                  {item?.Title}
-                </ListItem.Title>
-                <ListItem.Subtitle>{item?.Author}</ListItem.Subtitle>
-              </ListItem.Content>
-            </ListItem>
+            <View>
+              <ListItem.Accordion
+                key={item?.TitleID}
+                containerStyle={styles.listItem}
+                bottomDivider
+                isExpanded={expandedIndex === index && expanded}
+                onPress={() => {
+                  console.log(expanded);
+                  console.log(expandedIndex);
+                  setExpanded(expandedIndex === index ? false : true);
+                  setExpandedIndex(expandedIndex === index ? -1 : index);
+                }}
+                content={
+                  <>
+                    <Icon name="book" type="material-community" color="white" />
+                    <ListItem.Content>
+                      <ListItem.Title onLongPress={handleLongPressTitle}>
+                        {item?.Title}
+                      </ListItem.Title>
+                      <ListItem.Subtitle>{item?.Author}</ListItem.Subtitle>
+                    </ListItem.Content>
+                  </>
+                }
+              >
+                <ListItem
+                  containerStyle={{ backgroundColor: "grey", marginBottom: 8 }}
+                >
+                  <ListItem.Content>
+                    <ListItem.Subtitle>
+                      Material Type: {item?.MaterialType}
+                    </ListItem.Subtitle>
+                    <ListItem.Subtitle>
+                      Publication Year: {item?.YearOfPublication}
+                    </ListItem.Subtitle>
+                    <ListItem.Subtitle>
+                      Edition: {item?.Edition}
+                    </ListItem.Subtitle>
+                    <ListItem.Subtitle>
+                      Copies on Order: {item?.CopiesOnOrder}
+                    </ListItem.Subtitle>
+                    <ListItem.Subtitle>ISBN: {item?.ISBN}</ListItem.Subtitle>
+                    <ListItem.Subtitle>
+                      Call Number: {item?.CallNumber}
+                    </ListItem.Subtitle>
+                  </ListItem.Content>
+                </ListItem>
+              </ListItem.Accordion>
+            </View>
           );
         }}
       />
@@ -99,6 +138,10 @@ const styles = StyleSheet.create({
   listItem: {
     backgroundColor: "#9999ff",
     marginBottom: 8,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+    borderTopRightRadius: 25,
+    borderBottomRightRadius: 25,
   },
   loading: {
     position: "absolute",
