@@ -25,7 +25,7 @@ const NewBookSearchScreen = () => {
       setSearchLoading(true);
       axios
         .get(
-          `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/100`
+          `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/1`
         )
         .then(function (response) {
           setBookList(response?.data);
