@@ -8,6 +8,8 @@ import NewBookSearchScreen from "./screens/NewBookSearchScreen";
 import CoffeeBreakEntranceScreen from "./screens/CoffeeBreakEntranceScreen";
 import CoffeeBreakRooftopScreen from "./screens/CoffeeBreakRooftopScreen";
 import LibraryExitScreen from "./screens/LibraryExitScreen";
+7;
+import MapScreen from "./screens/MapScreen";
 import RoomSearchScreen from "./screens/RoomSearchScreen";
 import StationaryStoreScreen from "./screens/StationaryStoreScreen";
 
@@ -21,6 +23,7 @@ const coffeeBreakRooftopName = "CoffeeBreak at the Rooftop";
 const libraryExitName = "Exit the Library";
 const searchRoomName = "Search a Room";
 const stationaryStoreName = "Stationary Store";
+const mapScreenName = "Map Screen";
 
 const Navbar = () => {
   return (
@@ -100,6 +103,13 @@ const Navbar = () => {
       <Tabs.Screen
         name={stationaryStoreName}
         component={StationaryStoreScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={mapScreenName}
+        component={MapScreen}
         options={{
           tabBarButton: () => null, //like this
         }}

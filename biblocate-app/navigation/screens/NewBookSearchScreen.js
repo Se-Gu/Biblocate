@@ -12,7 +12,7 @@ import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const NewBookSearchScreen = () => {
+const NewBookSearchScreen = ({ navigation }) => {
   const [searchValue, setSearchValue] = useState("");
   const [bookList, setBookList] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -30,6 +30,27 @@ const NewBookSearchScreen = () => {
   const handleEmptySearch = () => setBookList([]);
 
   const handleSubmitSearch = () => {
+    setPage(1);
+    if (searchValue == "") handleEmptySearch();
+    else {
+      setSearchLoading(true);
+      axios
+        .get(
+          `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/1`
+        )
+        .then(function (response) {
+          setBookList([...bookList, ...response?.data]);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(() => {
+          setSearchLoading(false);
+        });
+    }
+  };
+
+  const loadNextPage = () => {
     if (searchValue == "") handleEmptySearch();
     else {
       setSearchLoading(true);
@@ -50,7 +71,7 @@ const NewBookSearchScreen = () => {
   };
 
   useEffect(() => {
-    handleSubmitSearch();
+    page !== 1 && loadNextPage();
   }, [page]);
 
   return (
@@ -79,8 +100,6 @@ const NewBookSearchScreen = () => {
                 bottomDivider
                 isExpanded={expandedIndex === index && expanded}
                 onPress={() => {
-                  console.log(expanded);
-                  console.log(expandedIndex);
                   setExpanded(expandedIndex === index ? false : true);
                   setExpandedIndex(expandedIndex === index ? -1 : index);
                 }}
@@ -116,6 +135,14 @@ const NewBookSearchScreen = () => {
                     <ListItem.Subtitle>
                       Call Number: {item?.CallNumber}
                     </ListItem.Subtitle>
+                    <Icon
+                      name="book"
+                      type="material-community"
+                      color="white"
+                      onPress={() =>
+                        navigation.navigate("Map Screen", { book: item })
+                      }
+                    />
                   </ListItem.Content>
                 </ListItem>
               </ListItem.Accordion>
