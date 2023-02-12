@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Dimensions } from "react-native";
 import React from "react";
 import BookSearchScreen from "./BookSearchScreen";
 import { useEffect } from "react";
@@ -6,22 +6,22 @@ import { Button } from "react-native-paper";
 
 const PaintedImage = () => {
   return (
-    <View style={{ transform: [{ scale: 0.3 }], backgroundColor: "green" }}>
+    <View style={{ position: "relative", flexDirection: "row" }}>
       <Image
         source={require("biblocate-app/assets/img/rooms/ARTROOM.jpg")}
         style={{
-          resizeMode: "stretch",
-          marginTop: "50%",
+          flex: 1,
+          aspectRatio: (2892 / 2223)
         }}
       />
       <View
         style={{
           backgroundColor: "blue",
-          width: 10,
-          height: 50,
+          width: (84 * 100 / 2892) + "%",
+          aspectRatio: 84 / 452,
           position: "absolute",
-          top: 0,
-          left: 50,
+          top: 146 * Dimensions.get('window').width / 2892, 
+          left: (946 * 100 / 2892) + "%",
           zIndex: 1,
         }}
       ></View>
