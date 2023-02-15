@@ -4,9 +4,12 @@ import HomeScreen from "./screens/HomeScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import InfoScreen from "./screens/InfoScreen";
 import BookSearchScreen from "./screens/BookSearchScreen";
+import NewBookSearchScreen from "./screens/NewBookSearchScreen";
 import CoffeeBreakEntranceScreen from "./screens/CoffeeBreakEntranceScreen";
 import CoffeeBreakRooftopScreen from "./screens/CoffeeBreakRooftopScreen";
 import LibraryExitScreen from "./screens/LibraryExitScreen";
+7;
+import MapScreen from "./screens/MapScreen";
 import RoomSearchScreen from "./screens/RoomSearchScreen";
 import StationaryStoreScreen from "./screens/StationaryStoreScreen";
 
@@ -20,6 +23,7 @@ const coffeeBreakRooftopName = "CoffeeBreak at the Rooftop";
 const libraryExitName = "Exit the Library";
 const searchRoomName = "Search a Room";
 const stationaryStoreName = "Stationary Store";
+const mapScreenName = "Map Screen";
 
 const Navbar = () => {
   return (
@@ -45,7 +49,7 @@ const Navbar = () => {
         },
         tabBarStyle: { position: "absolute" },
         tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "grey",
+        tabBarInactiveTintColor: "white",
         tabBarLabelStyle: {
           paddingBottom: 10,
           fontSize: 10,
@@ -53,6 +57,7 @@ const Navbar = () => {
         tabBarStyle: [
           {
             display: "flex",
+            backgroundColor: "#5A6EE1",
           },
           null,
         ],
@@ -62,7 +67,7 @@ const Navbar = () => {
       <Tabs.Screen name={infoName} component={InfoScreen} />
       <Tabs.Screen
         name={searchBookName}
-        component={BookSearchScreen}
+        component={NewBookSearchScreen}
         options={{
           tabBarButton: () => null, //like this
         }}
@@ -90,7 +95,7 @@ const Navbar = () => {
       />
       <Tabs.Screen
         name={searchRoomName}
-        component={RoomSearchScreen}
+        component={BookSearchScreen}
         options={{
           tabBarButton: () => null, //like this
         }}
@@ -98,6 +103,13 @@ const Navbar = () => {
       <Tabs.Screen
         name={stationaryStoreName}
         component={StationaryStoreScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={mapScreenName}
+        component={MapScreen}
         options={{
           tabBarButton: () => null, //like this
         }}

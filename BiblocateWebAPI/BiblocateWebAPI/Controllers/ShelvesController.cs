@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BiblocateWebAPI.Data;
 using BiblocateWebAPI.Models;
+using BiblocateWebAPI.Services.Services;
+using BiblocateWebAPI.Services.Interfaces;
 
 namespace BiblocateWebAPI.Controllers
 {
@@ -15,10 +12,18 @@ namespace BiblocateWebAPI.Controllers
     public class ShelvesController : ControllerBase
     {
         private readonly BiblocateWebAPIDbContext _context;
+        private readonly IShelfService _shelfService;
 
-        public ShelvesController(BiblocateWebAPIDbContext context)
+        public ShelvesController(BiblocateWebAPIDbContext context, IShelfService shelfService)
         {
             _context = context;
+            _shelfService = shelfService;
+        }
+
+        [HttpGet("FindShelf/{callNumber}")]
+        public async Task<string> GetShelfFromCallNumber(string callNumber)
+        {
+            return await _shelfService.GetShelfFromCallNumber(callNumber);
         }
 
         // GET: api/Shelves
@@ -34,15 +39,10 @@ namespace BiblocateWebAPI.Controllers
         {
             var shelf = await _context.Shelf.FindAsync(id);
 
-            if (shelf == null)
-            {
-                return NotFound();
-            }
-
-            return shelf;
+            return shelf == null ? NotFound() : shelf;
         }
 
-        [HttpGet("{roomId}/shelves")]
+        [HttpGet("{roomId}")]
         public async Task<ActionResult<IEnumerable<Shelf>>> GetShelvesByRoomId(short roomId)
         {
             var shelves = await _context.Shelf.ToListAsync();

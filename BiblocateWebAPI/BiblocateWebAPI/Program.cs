@@ -1,4 +1,6 @@
 ﻿using BiblocateWebAPI.Data;
+using BiblocateWebAPI.Services.Interfaces;
+using BiblocateWebAPI.Services.Services;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 
@@ -11,6 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+
+builder.Services.AddTransient<IShelfService, ShelfService>();
+builder.Services.AddTransient<IBookService, BookService>();
 
 builder.Services.AddDbContext<BiblocateWebAPIDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("BiblocateWebAPICon")));
 
