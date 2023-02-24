@@ -15,12 +15,10 @@ namespace BiblocateWebAPI.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly BiblocateWebAPIDbContext _context;
         private readonly IRoomService _roomService;
 
-        public RoomsController(BiblocateWebAPIDbContext context, IRoomService roomService)
+        public RoomsController( IRoomService roomService)
         {
-            _context = context;
             _roomService = roomService;
         }
 

@@ -11,12 +11,10 @@ namespace BiblocateWebAPI.Controllers
     [ApiController]
     public class ShelvesController : ControllerBase
     {
-        private readonly BiblocateWebAPIDbContext _context;
         private readonly IShelfService _shelfService;
 
-        public ShelvesController(BiblocateWebAPIDbContext context, IShelfService shelfService)
+        public ShelvesController( IShelfService shelfService)
         {
-            _context = context;
             _shelfService = shelfService;
         }
 
