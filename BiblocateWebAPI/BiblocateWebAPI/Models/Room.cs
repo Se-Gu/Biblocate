@@ -10,5 +10,6 @@ namespace BiblocateWebAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int16 RoomId { get; set; }
         public string RoomName { get; set; }
+        public byte[] RoomSchema { get; set; }
     }
 }

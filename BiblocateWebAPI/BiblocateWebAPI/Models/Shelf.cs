@@ -17,5 +17,6 @@ namespace BiblocateWebAPI.Models
         public string RightCallNumberEnd { get; set; }
         public Single XCoordinate { get; set; }
         public Single YCoordinate { get; set; }
+        public byte[] PaintedShelfSchema { get; set; }
     }
 }
