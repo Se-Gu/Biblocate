@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BiblocateWebAPI.Data;
 using BiblocateWebAPI.Models;
+using BiblocateWebAPI.Services.Interfaces;
 
 namespace BiblocateWebAPI.Controllers
 {
@@ -15,94 +16,84 @@ namespace BiblocateWebAPI.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly BiblocateWebAPIDbContext _context;
+        private readonly IRoomService _roomService;
 
-        public RoomsController(BiblocateWebAPIDbContext context)
+        public RoomsController(BiblocateWebAPIDbContext context, IRoomService roomService)
         {
             _context = context;
+            _roomService = roomService;
         }
 
         // GET: api/Rooms
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRoom()
+        [HttpGet("GetAllRooms")]
+        public async Task<IEnumerable<Room>> GetAllRooms()
         {
-            return await _context.Room.ToListAsync();
+            return await _roomService.GetAllRooms();
         }
 
         // GET: api/Rooms/5
-        [HttpGet("{id}")]
+        [HttpGet("GetRoom/{id}")]
         public async Task<ActionResult<Room>> GetRoom(short id)
         {
-            var room = await _context.Room.FindAsync(id);
+            Room? actionResult = await _roomService.GetRoom(id);
 
-            if (room == null)
+            if(actionResult == null)
             {
                 return NotFound();
             }
-
-            return room;
+            else
+            {
+                return actionResult;
+            }
         }
 
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("PutRoom/{id}")]
         public async Task<IActionResult> PutRoom(short id, Room room)
         {
-            if (id != room.RoomId)
+            int actionResult = await _roomService.PutRoom(id, room);
+
+            if (actionResult == -1)
             {
                 return BadRequest();
             }
-
-            _context.Entry(room).State = EntityState.Modified;
-
-            try
+            else if (actionResult == 0)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NoContent();
             }
-
-            return NoContent();
         }
 
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("PostRoom")]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            _context.Room.Add(room);
-            await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetRoom", new { id = room.RoomId }, room);
         }
 
         // DELETE: api/Rooms/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRoom/{id}")]
         public async Task<IActionResult> DeleteRoom(short id)
         {
-            var room = await _context.Room.FindAsync(id);
-            if (room == null)
+            int actionResult = await _roomService.DeleteRoom(id);
+            if (actionResult == -1)
             {
                 return NotFound();
             }
-
-            _context.Room.Remove(room);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else
+            {
+                return NoContent();
+            }
         }
 
         private bool RoomExists(short id)
         {
-            return _context.Room.Any(e => e.RoomId == id);
+            return _roomService.RoomExists(id);
         }
     }
 }

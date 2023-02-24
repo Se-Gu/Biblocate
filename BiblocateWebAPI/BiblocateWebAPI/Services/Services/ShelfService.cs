@@ -1,6 +1,7 @@
 ﻿using BiblocateWebAPI.Data;
 using BiblocateWebAPI.Models;
 using BiblocateWebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
@@ -13,6 +14,30 @@ namespace BiblocateWebAPI.Services.Services
         public ShelfService(BiblocateWebAPIDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<int> DeleteShelf(short id)
+        {
+            var shelf = await _context.Shelf.FindAsync(id);
+            if (shelf == null)
+            {
+                return -1;
+            }
+
+            _context.Shelf.Remove(shelf);
+            await _context.SaveChangesAsync();
+
+            return 0;
+        }
+
+        public async Task<IEnumerable<Shelf>> GetAllShelves()
+        {
+            return await _context.Shelf.ToListAsync();
+        }
+
+        public async Task<Shelf> GetShelf(short id)
+        {
+            return await _context.Shelf.FindAsync(id);
         }
 
         public async Task<string> GetShelfFromCallNumber(string callNumber)
@@ -51,6 +76,51 @@ namespace BiblocateWebAPI.Services.Services
                 else if (onTheRightSide) return shelf.ShelfId + "B";
             }
             return "does not exist!";
+        }
+
+        public async Task<IEnumerable<Shelf>> GetShelvesByRoomId(short roomId)
+        {
+            var shelves = await _context.Shelf.ToListAsync();
+            return shelves.FindAll(s => s.RoomId == roomId);
+        }
+
+        public async void PostShelf(Shelf shelf)
+        {
+            _context.Shelf.Add(shelf);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> PutShelf(short id, Shelf shelf)
+        {
+            if (id != shelf.ShelfId)
+            {
+                return -1;
+            }
+
+            _context.Entry(shelf).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ShelfExists(id))
+                {
+                    return 0;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return 1;
+        }
+
+        public bool ShelfExists(short id)
+        {
+            return _context.Shelf.Any(e => e.ShelfId == id);
         }
     }
 }

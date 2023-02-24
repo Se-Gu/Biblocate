@@ -27,89 +27,80 @@ namespace BiblocateWebAPI.Controllers
         }
 
         // GET: api/Shelves
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shelf>>> GetShelf()
+        [HttpGet("GetAllShelves")]
+        public async Task<IEnumerable<Shelf>> GetAllShelves()
         {
-            return await _context.Shelf.ToListAsync();
+            return await _shelfService.GetAllShelves();
         }
 
         // GET: api/Shelves/5
-        [HttpGet("{id}")]
+        [HttpGet("GetShelf/{id}")]
         public async Task<ActionResult<Shelf>> GetShelf(short id)
         {
-            var shelf = await _context.Shelf.FindAsync(id);
-
-            return shelf == null ? NotFound() : shelf;
+            Shelf? actionResult = await _shelfService.GetShelf(id);
+            if(actionResult == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return actionResult;
+            }
         }
 
-        [HttpGet("{roomId}")]
-        public async Task<ActionResult<IEnumerable<Shelf>>> GetShelvesByRoomId(short roomId)
+        [HttpGet("GetShelvesByRoom/{roomId}")]
+        public async Task<IEnumerable<Shelf>> GetShelvesByRoomId(short roomId)
         {
-            var shelves = await _context.Shelf.ToListAsync();
-            return shelves.FindAll(s => s.RoomId == roomId);
+            return await _shelfService.GetShelvesByRoomId(roomId);
         }
 
         // PUT: api/Shelves/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("PutShelf/{id}")]
         public async Task<IActionResult> PutShelf(short id, Shelf shelf)
         {
-            if (id != shelf.ShelfId)
+            int actionResult = await _shelfService.PutShelf(id, shelf);
+
+            if(actionResult == -1)
             {
                 return BadRequest();
             }
-
-            _context.Entry(shelf).State = EntityState.Modified;
-
-            try
+            else if (actionResult == 0)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!ShelfExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NoContent();
             }
-
-            return NoContent();
         }
 
         // POST: api/Shelves
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("PostShelf/")]
         public async Task<ActionResult<Shelf>> PostShelf(Shelf shelf)
         {
-            _context.Shelf.Add(shelf);
-            await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetShelf", new { id = shelf.ShelfId }, shelf);
         }
 
         // DELETE: api/Shelves/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteShelf/{id}")]
         public async Task<IActionResult> DeleteShelf(short id)
         {
-            var shelf = await _context.Shelf.FindAsync(id);
-            if (shelf == null)
+            int actionResult = await _shelfService.DeleteShelf(id);
+            if(actionResult == -1)
             {
                 return NotFound();
             }
-
-            _context.Shelf.Remove(shelf);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else
+            {
+                return NoContent();
+            }
         }
 
         private bool ShelfExists(short id)
         {
-            return _context.Shelf.Any(e => e.ShelfId == id);
+            return _shelfService.ShelfExists(id);
         }
     }
 }

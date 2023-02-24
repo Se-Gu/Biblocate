@@ -16,6 +16,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddTransient<IShelfService, ShelfService>();
 builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IRoomService, RoomService>();
 
 builder.Services.AddDbContext<BiblocateWebAPIDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("BiblocateWebAPICon")));
 
