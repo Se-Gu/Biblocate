@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -25,7 +25,21 @@ const searchRoomName = "Search a Room";
 const stationaryStoreName = "Stationary Store";
 const mapScreenName = "Map Screen";
 
+const SECONDS_TO_SCAN_FOR = 3;
+const SERVICE_UUIDS = [];
+const ALLOW_DUPLICATES = false;
+
+import BleManager from "react-native-ble-manager";
+import { NativeModules, NativeEventEmitter } from "react-native";
+const BleManagerModule = NativeModules.BleManager;
+const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
+
 const Navbar = () => {
+  BleManager.start({ showAlert: false }).then(() => {
+    // Success code
+    console.log("Module initialized");
+  });
+
   return (
     <Tabs.Navigator
       initialRouteName={homeName}
