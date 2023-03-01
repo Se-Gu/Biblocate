@@ -157,23 +157,28 @@ const StationaryStoreScreen = () => {
           });
         }
       });
+
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.BlUETOOTH_SCAN
+      ).then((result) => {
+        if (result) {
+          console.log("User accept");
+        } else {
+          console.log("User refuse");
+        }
+      });
+
+      /*
       PermissionsAndroid.check(
         PermissionsAndroid.PERMISSIONS.BlUETOOTH_SCAN
       ).then((result) => {
         if (result) {
           console.log("Permission is OK");
         } else {
-          PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.BlUETOOTH_SCAN
-          ).then((result) => {
-            if (result) {
-              console.log("User accept");
-            } else {
-              console.log("User refuse");
-            }
-          });
+          
         }
       });
+      */
     }
   };
 
