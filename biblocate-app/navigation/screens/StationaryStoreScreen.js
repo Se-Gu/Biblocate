@@ -140,6 +140,7 @@ const StationaryStoreScreen = () => {
 
   const handleAndroidPermissionCheck = () => {
     if (Platform.OS === "android" && Platform.Version >= 23) {
+      /*
       PermissionsAndroid.check(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
       ).then((result) => {
@@ -157,7 +158,9 @@ const StationaryStoreScreen = () => {
           });
         }
       });
+      */
 
+      console.log("hello");
       PermissionsAndroid.check(
         PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN
       ).then((result) => {
