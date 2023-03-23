@@ -6,8 +6,9 @@ import { useEffect } from "react";
 const CoffeeBreakRooftopScreen = () => {
   useEffect(() => {
     // Update the document title using the browser API
-    console.log("boo"); 
+    console.log("boo");
     scan();
+    console.log("after all");
   }, []);
   return (
     <View>
