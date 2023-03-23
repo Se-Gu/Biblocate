@@ -3,7 +3,7 @@ import ExpoTHREE, { THREE } from "expo-three";
 import React from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-export default class App extends React.Component {
+export default class Wayfinding extends React.Component {
   componentWillMount() {
     THREE.suppressExpoWarnings();
   }
@@ -38,13 +38,15 @@ export default class App extends React.Component {
     const material = new THREE.MeshPhongMaterial({
       color: 0xff0000,
     });
+    /*
     const axesHelper = new THREE.AxesHelper(3); // new code
     this.scene.add(axesHelper); // new code
+    */
 
-    const orbit = new OrbitControls(this.camera, this.renderer.domElement); // new code
-    orbit.update(); // new code
+    const orbit = new OrbitControls(this.camera, this.renderer.domElement);
+    orbit.update();
 
-    // -- our cube start
+    // cube
     const boxGeometry = new THREE.BoxGeometry();
     const boxMaterial = new THREE.MeshBasicMaterial({
       color: "rgb(52, 146, 235)",
@@ -54,12 +56,8 @@ export default class App extends React.Component {
     this.box.material.opacity = 1.0;
     this.scene.add(this.box);
     this.cubeCounter = 1;
-    // -- our cube end
 
-    // this.cube = new THREE.Mesh(geometry, material);
-    //this.scene.add(this.cube);
-
-    // -- our plane start
+    // plane
     const planeGeometry = new THREE.PlaneGeometry(30, 30);
     const entranceTexture = new THREE.TextureLoader().load(
       "../../assets/giris.png"
@@ -116,84 +114,16 @@ export default class App extends React.Component {
   };
 
   onRender = (delta) => {
+    this.updateScene(delta);
+    this.renderer.render(this.scene, this.camera);
+  };
+
+  updateScene = (delta) => {
     this.cubeCounter += 1;
     this.animateCube(delta);
     //this.cube.rotation.x += 3.5 * delta;
     //this.cube.rotation.y += 2 * delta;
     //console.log(this.cubeCounter);
     //console.log("Delta: ", delta);
-    this.renderer.render(this.scene, this.camera);
   };
 }
-// map
-// import * as THREE from 'three';
-
-// fundamentals
-// included: const scene = new THREE.Scene();
-// kinda included: const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-// included : const renderer = new THREE.WebGLRenderer();
-// included : renderer.setSize(window.innerWidth, window.innerHeight);
-// included: document.body.appendChild(renderer.domElement);
-
-// axes on screen for help
-// newly added: const axesHelper = new THREE.AxesHelper(3);
-// newly added: scene.add(axesHelper);
-
-//camera.position.set(0, 2, 5);
-// newly added: camera.position.set(10, 10, 10);
-//camera.position.y = 2;
-
-// ORBIT CONTROLS
-// newly added: const orbit = new OrbitControls(camera, renderer.domElement);
-// newly added: orbit.update();
-
-// CUBE (added)
-/*
-const boxGeometry = new THREE.BoxGeometry();
-const boxMaterial = new THREE.MeshBasicMaterial({ color: "rgb(52, 146, 235)" });
-const box = new THREE.Mesh(boxGeometry, boxMaterial);
-box.material.transparent = true;
-box.material.opacity = 1.0;
-scene.add(box);
-cubeCounter = 1;
-
-// plane (added)
-const planeGeometry = new THREE.PlaneGeometry(30, 30);
-const planeMaterial = new THREE.MeshBasicMaterial({
-  color: "rgb(204, 196, 182)",
-  side: THREE.DoubleSide,
-});
-const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-scene.add(plane);
-plane.rotation.x = -0.5 * Math.PI;
-plane.receiveShadow = true;
-
-// grid helper (added)
-const gridHelper = new THREE.GridHelper(30);
-scene.add(gridHelper);
-*/
-
-// animation functions
-/*
-function animateCube(time) {
-  if (cubeCounter % 600 == 0) {
-    if (box.material.opacity < 0.8) {
-      box.material.opacity += 0.01;
-    } else {
-      box.material.opacity = 0.4;
-    }
-  }
-  box.rotation.x = time / 1000;
-  box.rotation.y = time / 1000;
-}
-
-function animate(time) {
-  cubeCounter += 1;
-  animateCube(time);
-  //requestAnimationFrame( animate );
-  renderer.render(scene, camera);
-}
-
-renderer.setAnimationLoop(animate);
-
-*/
