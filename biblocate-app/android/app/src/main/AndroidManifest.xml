@@ -49,5 +49,6 @@
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>
+    <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" android:exported="true"/>
   </application>
 </manifest>
