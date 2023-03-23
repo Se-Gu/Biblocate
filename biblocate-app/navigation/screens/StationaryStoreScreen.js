@@ -4,7 +4,11 @@ import React from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export default class Wayfinding extends React.Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false,
+    };
     THREE.suppressExpoWarnings();
   }
 
