@@ -1,5 +1,6 @@
 import { View as GraphicsView } from "expo-graphics";
-import ExpoTHREE, { THREE } from "expo-three";
+import ExpoTHREE from "expo-three";
+import * as THREE from "three";
 import React from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
@@ -9,7 +10,7 @@ export default class Wayfinding extends React.Component {
     this.state = {
       isReady: false,
     };
-    THREE.suppressExpoWarnings();
+    //THREE.suppressExpoWarnings();
   }
 
   render() {
@@ -73,17 +74,6 @@ export default class Wayfinding extends React.Component {
     const entrancePlaneMaterial = new THREE.MeshBasicMaterial({
       map: entranceTexture,
     });
-    /*
-    var img = new THREE.MeshBasicMaterial({
-      map: THREE.TextureLoader().load("../../assets/giris.png"),
-    });
-    */
-    /*
-    const planeMaterial = new THREE.MeshBasicMaterial({
-      color: "rgb(204, 196, 182)",
-      side: THREE.DoubleSide,
-    });
-    */
     this.plane = new THREE.Mesh(planeGeometry, entrancePlaneMaterial);
     this.scene.add(this.plane);
     this.plane.rotation.x = -0.5 * Math.PI;
@@ -100,6 +90,10 @@ export default class Wayfinding extends React.Component {
     const light = new THREE.DirectionalLight(0xffffff, 0.5);
     light.position.set(3, 3, 3);
     this.scene.add(light);
+
+    // insert image
+    this.insertImage();
+    this.insertLight();
   };
 
   animateCube = (delta) => {
@@ -129,5 +123,45 @@ export default class Wayfinding extends React.Component {
     //this.cube.rotation.y += 2 * delta;
     //console.log(this.cubeCounter);
     //console.log("Delta: ", delta);
+  };
+
+  insertImage = () => {
+    /**
+     * Image
+     **/
+
+    // Create a texture loader so we can load our image file
+    var loader = new THREE.TextureLoader();
+
+    // Load an image file into a custom material
+    var material = new THREE.MeshLambertMaterial({
+      map: loader.load(
+        "https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg"
+      ),
+    });
+
+    // create a plane geometry for the image with a width of 10
+    // and a height that preserves the image's aspect ratio
+    var geometry = new THREE.PlaneGeometry(10, 10 * 0.75);
+
+    // combine our image geometry and material into a mesh
+    var mesh = new THREE.Mesh(geometry, material);
+
+    // set the position of the image mesh in the x,y,z dimensions
+    mesh.position.set(0, 0, 0);
+
+    // add the image to the scene
+    this.scene.add(mesh);
+  };
+
+  insertLight = () => {
+    // Add a point light with #fff color, .7 intensity, and 0 distance
+    var light = new THREE.PointLight(0xffffff, 1, 0);
+
+    // Specify the light's position
+    light.position.set(1, 1, 100);
+
+    // Add the light to the scene
+    this.scene.add(light);
   };
 }
