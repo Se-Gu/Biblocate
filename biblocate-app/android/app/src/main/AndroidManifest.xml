@@ -6,6 +6,15 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.BLUETOOTH"/>
   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="28"/>
+
+  <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+  <!-- Needed only if your app looks for Bluetooth devices. -->
+  <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+  <!-- Needed only if your app makes the device discoverable to Bluetooth devices. -->
+  <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
   <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
   <queries>

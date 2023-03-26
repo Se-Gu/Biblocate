@@ -75,8 +75,8 @@ function useBLE(): BluetoothLowEnergyApi {
         scanMode: ScanMode.LowLatency,
       },
       (error, device) => {
-        console.log(device);
-        if (device?.name?.includes("ARO")) {
+        if (device?.id?.includes("F7:42:89:4B:B9:AA")) {
+          console.log(device.id, device.rssi);
           const currentDistance = Math.pow(10, (-75 - device.rssi!) / (10 * 3));
 
           distanceBuffer[numOfSamples % 3] = currentDistance;
