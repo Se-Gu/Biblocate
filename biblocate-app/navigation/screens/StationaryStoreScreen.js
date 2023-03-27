@@ -1,5 +1,5 @@
 import React from "react";
-import useBLE from "../../services/useBle";
+import BeaconScanner from "../../services/BeaconScanner";
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 const StationaryStoreScreen = () => {
-  const { requestPermissions, scanForPeripherals, distance } = useBLE();
+  const { requestPermissions, scanForPeripherals, distance } = BeaconScanner();
 
   const scanForDevices = () => {
     console.log("scanForDevices is called");

@@ -4,24 +4,18 @@ import { PermissionsAndroid, Platform } from "react-native";
 import { BleManager, ScanMode } from "react-native-ble-plx";
 import { PERMISSIONS, requestMultiple } from "react-native-permissions";
 import DeviceInfo from "react-native-device-info";
+import BeaconDataManager from "./BeaconDataManager";
 
 const bleManager = new BleManager();
 
-type VoidCallback = (result: boolean) => void;
-
-interface BluetoothLowEnergyApi {
-  requestPermissions(cb: VoidCallback): Promise<void>;
-  scanForPeripherals(): void;
-  distance: number;
-}
-
-const distanceBuffer: [number, number, number] = [-1, -1, -1];
+const distanceBuffer = [-1, -1, -1];
 let numOfSamples = 0;
+const beaconDataManager = new BeaconDataManager();
 
-function useBLE(): BluetoothLowEnergyApi {
-  const [distance, setDistance] = useState<number>(-1);
+function BeaconScanner() {
+  const [distance, setDistance] = useState(-1);
 
-  const requestPermissions = async (cb: VoidCallback) => {
+  const requestPermissions = async (cb) => {
     if (Platform.OS === "android") {
       const apiLevel = await DeviceInfo.getApiLevel();
 
@@ -75,6 +69,14 @@ function useBLE(): BluetoothLowEnergyApi {
         scanMode: ScanMode.LowLatency,
       },
       (error, device) => {
+        beaconDataManager.addBeaconData(device.id, device.rssi);
+        /* TODO log into a data structure.
+         *   1. If device is in our list of devices,
+         *        1.1 Change the RSSI value for the device to current one
+         *        1.2 Add a time stamp to indicate the time of measurement
+         */
+
+        /*
         if (device?.id?.includes("F7:42:89:4B:B9:AA")) {
           console.log(device.id, device.rssi);
           const currentDistance = Math.pow(10, (-75 - device.rssi!) / (10 * 3));
@@ -90,6 +92,7 @@ function useBLE(): BluetoothLowEnergyApi {
 
           numOfSamples++;
         }
+        */
       }
     );
 
@@ -100,4 +103,4 @@ function useBLE(): BluetoothLowEnergyApi {
   };
 }
 
-export default useBLE;
+export default BeaconScanner;
