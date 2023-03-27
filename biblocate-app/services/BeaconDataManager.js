@@ -17,14 +17,22 @@ class BeaconDataManager {
     this.addBeaconData = (beacon, rssi) => {
       if (beacon in this.BeaconData) {
         var measurement = new MeasurementLog(new Date(), rssi);
-        this.BeaconData[beacon].log.push(measurement);
-        console.log(measurement.time, " ", measurement.rssi);
+        this.BeaconData[beacon].log.unshift(measurement);
+        console.log(
+          this.BeaconData[beacon].name,
+          " -- RSSI: ",
+          measurement.rssi,
+          " time: ",
+          measurement.time
+        );
       } else {
       }
     };
 
     this.getBeaconData = (beacon) => {
       // Check if any of the active beacons has expired
+      // If yes, remove it from the list
+
       if (beacon in this.BeaconData) {
         return this.BeaconData[beacon];
       }
