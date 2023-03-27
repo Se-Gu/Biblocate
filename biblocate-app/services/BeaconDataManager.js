@@ -7,7 +7,7 @@ class MeasurementLog {
 
 BeaconInitInformation = [
   {
-    id: "F7:42:89:4B:B9:AA",
+    id: "F7:42:89:CC:3F:A7",
     name: "Beacon 1",
     location: {
       x: 0,
@@ -17,16 +17,19 @@ BeaconInitInformation = [
   },
 ];
 
+const dataExpirationTime = 5000; // 5 seconds
+const minMeasurementWeight = 0.3;
+
 class BeaconDataManager {
   constructor() {
-    this.dataExpirationTime = 5000; // 5 seconds
     this.BeaconData = {};
 
-    forEach((element) => {
+    BeaconInitInformation.forEach((element) => {
       this.BeaconData[element.id] = {
         name: element.name,
         location: element.location,
         log: [],
+        current: null,
         active: false,
       };
     });
@@ -35,8 +38,10 @@ class BeaconDataManager {
       if (beacon in this.BeaconData) {
         var measuredBeacon = this.BeaconData[beacon];
         var measurement = new MeasurementLog(new Date(), rssi);
+        /*
         measuredBeacon.log.unshift(measurement);
-        measuredBeacon.active = true;
+        */
+        /*
         console.log(
           measuredBeacon.name,
           " -- RSSI: ",
@@ -44,6 +49,18 @@ class BeaconDataManager {
           " time: ",
           measurement.time
         );
+        */
+
+        if (!measuredBeacon.active) {
+          measuredBeacon.active = true;
+          measuredBeacon.current = measurement;
+        } else {
+          measuredBeacon.current = calculateCurrentValue(
+            (oldMeasurement = measuredBeacon.current),
+            (newMeasurement = measurement)
+          );
+          console.log("Current beacon value: ", measuredBeacon.current.rssi);
+        }
       } else {
       }
     };
@@ -56,6 +73,23 @@ class BeaconDataManager {
       this.activateBeacon = (beacon) => {};
     };
   }
+}
+
+function calculateCurrentValue(oldMeasurement, newMeasurement) {
+  var weight = measurementWeight(newMeasurement.time, oldMeasurement.time);
+  var newRSSI =
+    newMeasurement.rssi * weight + oldMeasurement.rssi * (1 - weight);
+  newMeasurement.rssi = newRSSI;
+  //console.log("weight: ", weight);
+  return newMeasurement;
+}
+
+function measurementWeight(newTime, oldTime) {
+  //console.log("new time - old time:", newTime - oldTime);
+  return (
+    ((1 - minMeasurementWeight) / dataExpirationTime) * (newTime - oldTime) +
+    minMeasurementWeight
+  );
 }
 
 export default BeaconDataManager;
