@@ -1,15 +1,9 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { GLView } from "expo-gl";
+import { Text, View } from "react-native";
 import * as THREE from "three";
+import Wayfinding from "../../components/Wayfinding";
 
-const CoffeeBreakEntranceScreen = () => {
-  // create three js scene
-  const scene = new THREE.Scene();
-  return (
-    <View>
-      <Text>CoffeeBreakEntranceScreen</Text>
-    </View>
-  );
-};
-
-export default CoffeeBreakEntranceScreen;
+export default function CoffeeBreakEntranceScreen() {
+  return <Wayfinding />;
+}
