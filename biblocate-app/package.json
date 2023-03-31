@@ -8,6 +8,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@nativescript/canvas-three": "^1.1.0",
+    "@nativescript/core": "^8.5.0",
     "@react-navigation/bottom-tabs": "^6.5.0",
     "@react-navigation/native": "^6.1.0",
     "@rneui/base": "^0.0.0-edge.2",
@@ -31,6 +33,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
     "tailwindcss": "^3.2.4",
+    "three": "^0.151.2",
     "typescript": "^4.6.3"
   },
   "devDependencies": {
