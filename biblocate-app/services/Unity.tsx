@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-
 import UnityView from '@azesmway/react-native-unity';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 interface IMessage {
   gameObject: string;
@@ -24,10 +23,11 @@ const Unity = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View>
+      <Text style={{backgroundColor: "blue"}}>Hey</Text>
       <UnityView
         ref={unityRef}
-        style={{ flex: 1 }}
+        style={{backgroundColor: "blue", height: "100%", width: "100%"}}
         onUnityMessage={(result) => {
           console.log('onUnityMessage', result.nativeEvent.message)
         }}
