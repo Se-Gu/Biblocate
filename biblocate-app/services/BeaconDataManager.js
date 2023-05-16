@@ -1,3 +1,8 @@
+import BeaconConfig from './BeaconConfig';
+
+const dataExpirationTime = 5000; // 5 seconds
+const minMeasurementWeight = 0.3;
+
 class MeasurementLog {
   constructor(time, rssi) {
     this.time = time;
@@ -5,22 +10,11 @@ class MeasurementLog {
   }
 }
 
-BeaconInitInformation = [
-  {
-    id: "F7:42:89:CC:3F:A7",
-    unityId: 0,
-    name: "Beacon 1",
-  },
-];
-
-const dataExpirationTime = 5000; // 5 seconds
-const minMeasurementWeight = 0.3;
-
 class BeaconDataManager {
   constructor() {
     this.BeaconData = {};
 
-    BeaconInitInformation.forEach((element) => {
+    BeaconConfig.forEach((element) => {
       this.BeaconData[element.id] = {
         name: element.name,
         log: [],
@@ -28,75 +22,75 @@ class BeaconDataManager {
         active: false,
       };
     });
+  }
 
-    this.setUnityFunction = (inputFunction) => {
-      this.updateUnityFunction = inputFunction;
+  setUnityFunction (inputFunction) {
+    this.updateUnityFunction = inputFunction;
+  }
+
+  addBeaconData (beacon, rssi) {
+    if (!(beacon in this.BeaconData))
+      return;
+
+    let measuredBeacon = this.BeaconData[beacon];
+    let measurement = new MeasurementLog(new Date(), rssi);
+
+    if (!measuredBeacon.active) {
+      measuredBeacon.active = true;
+      measuredBeacon.current = measurement;
+    } else {
+      measuredBeacon.current = calculateCurrentValue(
+        (oldMeasurement = measuredBeacon.current),
+        (newMeasurement = measurement)
+      );
+      console.log("Current beacon value: ", measuredBeacon.current.rssi);
     }
 
-    this.addBeaconData = (beacon, rssi) => {
-      if (!(beacon in this.BeaconData)) 
-        return;
+    beaconDataManager.sendUnityData();
 
-      let measuredBeacon = this.BeaconData[beacon];
-      let measurement = new MeasurementLog(new Date(), rssi);
+    // When beacon data is added, we would like to send a message to Unity.
+  }
 
-      if (!measuredBeacon.active) {
-        measuredBeacon.active = true;
-        measuredBeacon.current = measurement;
-      } else {
-        measuredBeacon.current = calculateCurrentValue(
-          (oldMeasurement = measuredBeacon.current),
-          (newMeasurement = measurement)
-        );
-        console.log("Current beacon value: ", measuredBeacon.current.rssi);
-      }
+  getBeaconData (beacon) {
+    if (beacon in this.BeaconData) {
+      return this.BeaconData[beacon];
+    }
+  }
 
-      beaconDataManager.sendUnityData();
+  getTwoLargestMeasurements () {
+    let largestBeacons = [null, null];
+    let largestRSSIs = [-Infinity, -Infinity];
 
-      // When beacon data is added, we would like to send a message to Unity.
-    };
+    BeaconInitInformation.forEach((beaconInfo) => {
+      const beaconData = this.BeaconData[beaconInfo.id];
 
-    this.getBeaconData = (beacon) => {
-      if (beacon in this.BeaconData) {
-        return this.BeaconData[beacon];
-      }
-    };
+      beaconData.log.forEach((measurement) => {
+        if (measurement.rssi > largestRSSIs[0]) {
+          // This measurement is larger than both of the current largest
+          largestRSSIs[1] = largestRSSIs[0];
+          largestBeacons[1] = largestBeacons[0];
 
-    this.getTwoLargestMeasurements = () => {
-      let largestBeacons = [null, null];
-      let largestRSSIs = [-Infinity, -Infinity];
-
-      BeaconInitInformation.forEach((beaconInfo) => {
-        const beaconData = this.BeaconData[beaconInfo.id];
-
-        beaconData.log.forEach((measurement) => {
-          if (measurement.rssi > largestRSSIs[0]) {
-            // This measurement is larger than both of the current largest
-            largestRSSIs[1] = largestRSSIs[0];
-            largestBeacons[1] = largestBeacons[0];
-
-            largestRSSIs[0] = measurement.rssi;
-            largestBeacons[0] = beaconInfo;
-          } else if (measurement.rssi > largestRSSIs[1]) {
-            // This measurement is only larger than the second largest
-            largestRSSIs[1] = measurement.rssi;
-            largestBeacons[1] = beaconInfo;
-          }
-        });
+          largestRSSIs[0] = measurement.rssi;
+          largestBeacons[0] = beaconInfo;
+        } else if (measurement.rssi > largestRSSIs[1]) {
+          // This measurement is only larger than the second largest
+          largestRSSIs[1] = measurement.rssi;
+          largestBeacons[1] = beaconInfo;
+        }
       });
+    });
 
-      if(largestBeacons[0] && largestBeacons[1]) {
-        const ratioOfMeasurements = largestRSSIs[0] / largestRSSIs[1];
-        return `${largestBeacons[0].unityId},${largestBeacons[1].unityId},${ratioOfMeasurements}`;
-      } else {
-        return null;
-      }
+    if(largestBeacons[0] && largestBeacons[1]) {
+      const ratioOfMeasurements = largestRSSIs[0] / largestRSSIs[1];
+      return `${largestBeacons[0].unityId},${largestBeacons[1].unityId},${ratioOfMeasurements}`;
+    } else {
+      return null;
     }
+  }
 
-    this.sendUnityData = () => {
-      if(this.updateUnityFunction) {
-        this.updateUnityFunction("BeaconManager", "BeaconManager", getTwoLargestMeasurements())
-      }
+  sendUnityData () {
+    if(this.updateUnityFunction) {
+      this.updateUnityFunction("BeaconManager", "BeaconManager", getTwoLargestMeasurements())
     }
   }
 }
