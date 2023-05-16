@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import UnityView from '@azesmway/react-native-unity';
 import { View, Text } from 'react-native';
+import BeaconScanner from './BeaconScanner'
 
 interface IMessage {
   gameObject: string;
@@ -11,6 +12,17 @@ interface IMessage {
 const Unity = () => {
   const unityRef = useRef<UnityView>(null);
 
+  const { requestPermissions, scanForPeripherals, setUnityFunction} = BeaconScanner();
+
+  const scanForDevices = () => {
+    console.log("scanForDevices is called");
+    requestPermissions((isGranted) => {
+      if (isGranted) {
+        scanForPeripherals();
+      }
+    });
+  };
+
   useEffect(() => {
     if (unityRef?.current) {
       const message: IMessage = {
@@ -19,6 +31,8 @@ const Unity = () => {
         message: 'message',
       };
       unityRef.current.postMessage(message.gameObject, message.methodName, message.message);
+      setUnityFunction(unityRef.current.postMessage);
+      scanForDevices();
     }
   }, []);
 

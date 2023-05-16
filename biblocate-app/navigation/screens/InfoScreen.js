@@ -6,7 +6,6 @@ import Unity from "../../services/Unity";
 const InfoScreen = () => {
   return (
     <View>
-      <Text>InfoScreen</Text>
       <Unity/>
     </View>
   );

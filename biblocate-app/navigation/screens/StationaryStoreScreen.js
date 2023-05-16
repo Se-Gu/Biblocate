@@ -9,16 +9,16 @@ import {
 } from "react-native";
 
 const StationaryStoreScreen = () => {
-  const { requestPermissions, scanForPeripherals, distance } = BeaconScanner();
+  // const { requestPermissions, scanForPeripherals, distance } = BeaconScanner();
 
-  const scanForDevices = () => {
-    console.log("scanForDevices is called");
-    requestPermissions((isGranted) => {
-      if (isGranted) {
-        scanForPeripherals();
-      }
-    });
-  };
+  // const scanForDevices = () => {
+  //   console.log("scanForDevices is called");
+  //   requestPermissions((isGranted) => {
+  //     if (isGranted) {
+  //       scanForPeripherals();
+  //     }
+  //   });
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,9 +26,9 @@ const StationaryStoreScreen = () => {
         <Text style={{ fontSize: 50, color: "black" }}>Meters</Text>
         <Text style={{ fontSize: 300, color: "black" }}>{distance}</Text>
       </View>
-      <TouchableOpacity onPress={scanForDevices} style={styles.ctaButton}>
-        <Text style={styles.ctaButtonText}>FIND THE DISTANCE</Text>
-      </TouchableOpacity>
+      {/* <TouchableOpacity onPress={scanForDevices} style={styles.ctaButton}> */}
+      {/*   <Text style={styles.ctaButtonText}>FIND THE DISTANCE</Text> */}
+      {/* </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
