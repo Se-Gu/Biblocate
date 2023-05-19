@@ -24,7 +24,6 @@ const StationaryStoreScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.heartRateTitleWrapper}>
         <Text style={{ fontSize: 50, color: "black" }}>Meters</Text>
-        <Text style={{ fontSize: 300, color: "black" }}>{distance}</Text>
       </View>
       {/* <TouchableOpacity onPress={scanForDevices} style={styles.ctaButton}> */}
       {/*   <Text style={styles.ctaButtonText}>FIND THE DISTANCE</Text> */}

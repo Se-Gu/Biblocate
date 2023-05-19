@@ -20,6 +20,7 @@ class BeaconDataManager {
         log: [],
         current: null,
         active: false,
+        unityId: element.unityId
       };
     });
   }
@@ -46,7 +47,7 @@ class BeaconDataManager {
       console.log("Current beacon value: ", measuredBeacon.current.rssi);
     }
 
-    beaconDataManager.sendUnityData();
+    this.sendUnityData();
 
     // When beacon data is added, we would like to send a message to Unity.
   }
@@ -61,27 +62,27 @@ class BeaconDataManager {
     let largestBeacons = [null, null];
     let largestRSSIs = [-Infinity, -Infinity];
 
-    BeaconInitInformation.forEach((beaconInfo) => {
-      const beaconData = this.BeaconData[beaconInfo.id];
+    //console.log("this.bd" + JSON.stringify(this.BeaconData));
 
-      beaconData.log.forEach((measurement) => {
-        if (measurement.rssi > largestRSSIs[0]) {
+    Object.values(this.BeaconData).filter((beaconData) => beaconData.active).forEach((beaconData) => {
+      //const beaconData = this.BeaconData[beaconInfo.id];
+        //console.log("bd:" + JSON.stringify(beaconData));
+        if (beaconData.current.rssi > largestRSSIs[0]) {
           // This measurement is larger than both of the current largest
           largestRSSIs[1] = largestRSSIs[0];
           largestBeacons[1] = largestBeacons[0];
 
-          largestRSSIs[0] = measurement.rssi;
-          largestBeacons[0] = beaconInfo;
-        } else if (measurement.rssi > largestRSSIs[1]) {
+          largestRSSIs[0] = beaconData.current.rssi;
+          largestBeacons[0] = beaconData;
+        } else if (beaconData.current.rssi > largestRSSIs[1]) {
           // This measurement is only larger than the second largest
-          largestRSSIs[1] = measurement.rssi;
-          largestBeacons[1] = beaconInfo;
+          largestRSSIs[1] = beaconData.current.rssi;
+          largestBeacons[1] = beaconData;
         }
-      });
     });
 
     if(largestBeacons[0] && largestBeacons[1]) {
-      const ratioOfMeasurements = largestRSSIs[0] / largestRSSIs[1];
+      const ratioOfMeasurements = Math.floor((largestRSSIs[0] + 30) * 100 / (largestRSSIs[1] + largestRSSIs[0] + 60));
       return `${largestBeacons[0].unityId},${largestBeacons[1].unityId},${ratioOfMeasurements}`;
     } else {
       return null;
@@ -90,7 +91,7 @@ class BeaconDataManager {
 
   sendUnityData () {
     if(this.updateUnityFunction) {
-      this.updateUnityFunction("BeaconManager", "BeaconManager", getTwoLargestMeasurements())
+      this.updateUnityFunction(this.getTwoLargestMeasurements())
     }
   }
 }

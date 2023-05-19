@@ -81,7 +81,6 @@ function BeaconScanner() {
     scanForPeripherals,
     requestPermissions,
     setUnityFunction,
-    // distance,
   };
 }
 
