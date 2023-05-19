@@ -4,6 +4,6 @@ namespace BiblocateWebAPI.Services.Interfaces
 {
     public interface IShelfService
     {
-        Task<string> GetShelfFromCallNumber(string callNumber);
+        Task<byte[]> GetShelfFromCallNumber(string callNumber);
     }
 }

@@ -14,6 +14,6 @@ namespace BiblocateWebAPI.Models
         [Required]
         public ICollection<Shelf> Shelves { get; set; }
         [Required]
-        public byte[] Base_Image { get; set; }
+        public byte[]? Base_Image { get; set; }
     }
 }
