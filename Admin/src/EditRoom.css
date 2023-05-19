@@ -1,0 +1,65 @@
+.mainToolbar {
+    background-color: crimson;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+}
+
+.shelfToolbar {
+    background-color: indianred;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+}
+
+.CallNumToolbar {
+    background-color: indianred;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+}
+
+.CallNumToolbar input {
+    border-radius: 1rem;
+    padding-left: 1rem;
+}
+
+button {
+    background-color: plum;
+    border-radius: 0.5rem;
+}
+
+button:hover {
+    background-color: rgb(110, 89, 110);
+}
+
+.roomWrapper {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    margin-bottom: 2rem;
+}
+
+.roomImg {
+    width: 100%;
+}
+
+.shelfImg {
+    position: absolute;
+    left: 0;
+    height: 9rem;
+    width: 1.7rem;
+}
+
+.shelfImg.active {
+    filter: hue-rotate(180deg);
+}
