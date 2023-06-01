@@ -12,6 +12,7 @@ import LibraryExitScreen from "./screens/LibraryExitScreen";
 import MapScreen from "./screens/MapScreen";
 import RoomSearchScreen from "./screens/RoomSearchScreen";
 import StationaryStoreScreen from "./screens/StationaryStoreScreen";
+import NavScreen from "./screens/NavScreen";
 
 const Tabs = createBottomTabNavigator();
 
@@ -24,6 +25,7 @@ const libraryExitName = "Exit the Library";
 const searchRoomName = "Search a Room";
 const stationaryStoreName = "Stationary Store";
 const mapScreenName = "Map Screen";
+const navScreenName = "Nav Screen"
 
 const Navbar = () => {
   return (
@@ -110,6 +112,13 @@ const Navbar = () => {
       <Tabs.Screen
         name={mapScreenName}
         component={MapScreen}
+        options={{
+          tabBarButton: () => null, //like this
+        }}
+      />
+      <Tabs.Screen
+        name={navScreenName}
+        component={NavScreen}
         options={{
           tabBarButton: () => null, //like this
         }}

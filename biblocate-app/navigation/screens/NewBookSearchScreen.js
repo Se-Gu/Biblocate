@@ -39,7 +39,7 @@ const NewBookSearchScreen = ({ navigation }) => {
           `https://biblocate.azurewebsites.net/api/Books/SearchBooks/${searchValue}/1`
         )
         .then(function (response) {
-          setBookList([...bookList, ...response?.data]);
+          setBookList(response?.data);
         })
         .catch(function (error) {
           console.log(error);

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import UnityView from '@azesmway/react-native-unity';
 import { View, Text } from 'react-native';
 import BeaconScanner from './BeaconScanner'
