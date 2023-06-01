@@ -10,7 +10,7 @@ interface IMessage {
   message: string;
 }
 
-const Unity = () => {
+const Unity = forwardRef((props, ref) => {
   const unityRef = useRef<UnityView>(null);
 
   const { requestPermissions, scanForPeripherals, setUnityFunction } = BeaconScanner();
@@ -43,6 +43,14 @@ const Unity = () => {
       scanForDevices();
     }
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    unloadUnity() {
+      if (unityRef?.current) {
+        unityRef.current.unloadUnity();
+      }
+    }
+  }));
 
   const handlePress = () => {
     const randomNumber = Math.floor(Math.random() * 101);
