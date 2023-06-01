@@ -33,15 +33,32 @@ function EditShelf({page, setPage, room, setRoom}) {
     }
 
     const handleSave = () => {
-        console.log(findUpdated());
         console.log(added.list);
-        axios.post('https://localhost:7013/api/Shelves/Save/' + room.roomId, {saveDto: {Added: added.list, Updated: findUpdated(), Deleted: deleted}})
+        /*
+        let saveDto = {Added: added.list, Updated: added.list, Deleted: ["del","ete"]};
+        const response = fetch("https://localhost:7013/api/Shelves/Save/" + room.roomId, {
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({saveDto: saveDto}), // body data type must match "Content-Type" header
+        });
+        */
+        
+        axios.post('https://localhost:7013/api/Shelves/Save/' + room.roomId, [...added.list, ...updated].map((instance) => {delete instance.ShelfId; console.log(instance); return instance;}) )
+        // {}, {
+        //    params: { 
+        //        saveDto: {Added: added.list, Updated: added.list, Deleted: ["del","ete"]}
+        //    }
+        //})
+        // {saveDto: {Added: added.list, Updated: [{}], Deleted: ["del","ete"]}}, {contentType: 'application/json'} )
         .then((response) => {
           console.log(response.data);
         })
         .catch(function (error) {
           console.log(error);
         });
+        
         setRoom({roomId: null, roomName: null});
         setPage({homePage: true});
     }
@@ -58,7 +75,7 @@ function EditShelf({page, setPage, room, setRoom}) {
 
     const handleAdd = () => {
         setAdded({num: added.num+1, list: [...added.list, {ShelfId: "a" + added.num, RoomId: room.roomId, XCoordinate: 0, YCoordinate: 0, LeftCallNumberBegin: "",
-            LeftCallNumberEnd: "", RightCallNumberBegin: "", RightCallNumberEnd: ""}]});
+            LeftCallNumberEnd: "", RightCallNumberBegin: "", RightCallNumberEnd: "", Width: 80, Height: 450}]});
     }
 
     const handleDelete = () => {
@@ -107,8 +124,8 @@ function EditShelf({page, setPage, room, setRoom}) {
         if ( selected[0] === "a" ){
             setAdded({...added, list: added.list.map(instance => {
                 if (instance.ShelfId === selected 
-                    && roomDims.width >= instance.XCoordinate + x && instance.XCoordinate + x >= 0 
-                    && roomDims.height >= instance.YCoordinate + y && instance.YCoordinate + y >= 0 ){
+                    && roomDims.width >= instance.XCoordinate + instance.Width + x && instance.XCoordinate + x >= 0 
+                    && roomDims.height >= instance.YCoordinate + instance.Height + y && instance.YCoordinate + y >= 0 ){
                     return {...instance, XCoordinate: instance.XCoordinate + x, YCoordinate: instance.YCoordinate + y};
                 } else {
                     return instance;
@@ -118,8 +135,8 @@ function EditShelf({page, setPage, room, setRoom}) {
         else {
             setUpdated(updated.map(instance => {
                 if (instance.ShelfId === selected
-                    && roomDims.width >= instance.XCoordinate + x && instance.XCoordinate + x >= 0 
-                    && roomDims.height >= instance.YCoordinate + y && instance.YCoordinate + y >= 0 ){
+                    && roomDims.width >= instance.XCoordinate + instance.Width + x && instance.XCoordinate + x >= 0 
+                    && roomDims.height >= instance.YCoordinate + instance.Height + y && instance.YCoordinate + y >= 0 ){
                     return {...instance, XCoordinate: instance.XCoordinate + x, YCoordinate: instance.YCoordinate + y};
                 } else {
                     return instance;
@@ -145,10 +162,10 @@ function EditShelf({page, setPage, room, setRoom}) {
             </div>
             {selected && <div>
                 <div className="shelfToolbar">
-                    <button onClick={() => handleMove(-10,0)}>left</button>
-                    <button onClick={() => handleMove(10,0)}>right</button>
-                    <button onClick={() => handleMove(0,-10)}>up</button>
-                    <button onClick={() => handleMove(0,10)}>down</button>
+                    <button onClick={() => handleMove(-50,0)}>left</button>
+                    <button onClick={() => handleMove(50,0)}>right</button>
+                    <button onClick={() => handleMove(0,-50)}>up</button>
+                    <button onClick={() => handleMove(0,50)}>down</button>
                     <button onClick={handleDelete}>Delete</button>
                 </div>
                 <div className="CallNumToolbar">
@@ -171,7 +188,8 @@ function EditShelf({page, setPage, room, setRoom}) {
                         alt="shelf_img" 
                         className={selected === shelf.ShelfId ? "shelfImg active": "shelfImg"}
                         onClick={()=>handleSelect(shelf.ShelfId, shelf.LeftCallNumberBegin, shelf.LeftCallNumberEnd, shelf.RightCallNumberBegin, shelf.RightCallNumberEnd)}
-                        style={{left: shelf.XCoordinate / roomDims.width * 100 + "%", top: shelf.YCoordinate / roomDims.height * 100 + "%"}}
+                        style={{left: shelf.XCoordinate / roomDims.width * 100 + "%", top: shelf.YCoordinate / roomDims.height * 100 + "%",
+                            width: shelf.Width / roomDims.width * 100 + "%", height: shelf.Height / roomDims.height * 100 + "%"}}
                     /> 
                     )
                 }
@@ -184,7 +202,8 @@ function EditShelf({page, setPage, room, setRoom}) {
                         alt="shelf_img" 
                         className={selected === shelf.ShelfId ? "shelfImg active": "shelfImg"}
                         onClick={()=>handleSelect(shelf.ShelfId, shelf.LeftCallNumberBegin, shelf.LeftCallNumberEnd, shelf.RightCallNumberBegin, shelf.RightCallNumberEnd)}
-                        style={{left: shelf.XCoordinate / roomDims.width * 100 + "%", top: shelf.YCoordinate / roomDims.height * 100 + "%"}}
+                        style={{left: shelf.XCoordinate / roomDims.width * 100 + "%", top: shelf.YCoordinate / roomDims.height * 100 + "%",
+                            width: shelf.Width / roomDims.width * 100 + "%", height: shelf.Height / roomDims.height * 100 + "%"}}
                     /> 
                     )
                 }

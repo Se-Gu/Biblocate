@@ -72,7 +72,11 @@ function BeaconScanner() {
         scanMode: ScanMode.LowLatency,
       },
       (error, device) => {
-        beaconDataManager.addBeaconData(device.id, device.rssi);
+        if(!device) {
+          console.log(error);
+        } else {
+          beaconDataManager.addBeaconData(device.id, device.rssi);
+        }
       }
     );
   }

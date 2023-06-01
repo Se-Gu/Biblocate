@@ -8,6 +8,7 @@ namespace BiblocateWebAPI.Models
     public class Shelf
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int16 ShelfId { get; set; }
         public Int16 RoomId { get; set; }
         public Room Room { get; set; }

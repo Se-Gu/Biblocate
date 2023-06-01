@@ -68,7 +68,7 @@ function RoomList({setPage, setRoom}) {
         <div>
             <p>Rooms</p>
             <ul className="wrapper">
-                { rooms.map( room => <li key={room.RoomId}><button className="roomButton" onClick={() => handlePage(room)}>{room.RoomName}</button></li>) }
+                { rooms.map( room => <li key={room.RoomId}><button className="roomButton" disabled={room.RoomName === "NO ROOMS"} onClick={() => handlePage(room)}>{room.RoomName}</button></li>) }
             </ul>
             <div>
                 <button className="roomButton" onClick={() => {addExtend ? setAddExtend(false) : setAddExtend(true)}}>Add Room +</button>

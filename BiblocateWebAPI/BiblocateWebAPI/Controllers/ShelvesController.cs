@@ -116,8 +116,10 @@ namespace BiblocateWebAPI.Controllers
         }
 
         [HttpPost("Save/{roomId}")]
-        public async Task<IActionResult> SaveShelves(short roomId, SaveDto saveDto)
+        public async Task<IActionResult> SaveShelves(short roomId, [FromBody] List<Shelf> New)
         {
+            /*
+            SaveDto saveDto = new SaveDto();
             foreach(var a in saveDto.Added)
             {
                 Shelf shelf = new Shelf
@@ -145,6 +147,30 @@ namespace BiblocateWebAPI.Controllers
                 }
                 _context.Shelf.Remove(shelf);
             }
+            */
+
+            foreach (var s in _context.Shelf.Where((s) => s.RoomId.Equals(roomId)))
+            {
+                _context.Remove(s);
+            }
+
+            foreach (var a in New)
+            {
+                Shelf shelf = new Shelf
+                {
+                    RoomId = a.RoomId,
+                    Room = _context.Room.Find(a.RoomId),
+                    XCoordinate = a.XCoordinate,
+                    YCoordinate = a.YCoordinate,
+                    LeftCallNumberBegin = a.LeftCallNumberBegin,
+                    LeftCallNumberEnd = a.LeftCallNumberEnd,
+                    RightCallNumberBegin = a.RightCallNumberBegin,
+                    RightCallNumberEnd = a.RightCallNumberEnd,
+                    Height = a.Height,
+                    Width = a.Width
+                };
+                _context.Shelf.Add(shelf);
+            }
 
             _context.SaveChanges();
 
@@ -159,28 +185,28 @@ namespace BiblocateWebAPI.Controllers
                 Pen bluePen = new Pen(Color.Blue, 84);
                 Pen redPen = new Pen(Color.Red, 84);
 
-                // D]raw line to screen.
+                // Draw line to screen.
                 using (var graphics = Graphics.FromImage(bmp))
                 {
                     foreach (Shelf shelf in _context.Shelf.Where((s) => s.RoomId.Equals(roomId))) {
                         bluePen.Width = shelf.Width;
-                        graphics.DrawLine(bluePen, shelf.XCoordinate, shelf.YCoordinate, shelf.XCoordinate, shelf.YCoordinate + shelf.Height);
+                        graphics.DrawLine(bluePen, shelf.XCoordinate + shelf.Width / 2, shelf.YCoordinate, shelf.XCoordinate + shelf.Width / 2, shelf.YCoordinate + shelf.Height);
                     }
                 }
 
                 painted = new Bitmap[_context.Shelf.Count() * 2];
                 int i = 0;
                 foreach (Shelf shelf in _context.Shelf.Where((s) => s.RoomId.Equals(roomId))) {
-                    painted[2 * i] = bmp;
-                    painted[2 * i + 1] = bmp;
+                    painted[2 * i] = new Bitmap(bmp);
+                    painted[2 * i + 1] = new Bitmap(bmp);
                     redPen.Width = shelf.Width / 2;
                     using (var graphics = Graphics.FromImage(painted[2 * i]))
                     {
-                        graphics.DrawLine(bluePen, shelf.XCoordinate, shelf.YCoordinate, shelf.XCoordinate, shelf.YCoordinate + shelf.Height);
+                        graphics.DrawLine(redPen, shelf.XCoordinate + shelf.Width / 4, shelf.YCoordinate, shelf.XCoordinate + shelf.Width / 4, shelf.YCoordinate + shelf.Height);
                     }
                     using (var graphics = Graphics.FromImage(painted[2 * i + 1]))
                     {
-                        graphics.DrawLine(bluePen, shelf.XCoordinate + shelf.Width / 2, shelf.YCoordinate, shelf.XCoordinate + shelf.Width / 2, shelf.YCoordinate + shelf.Height);
+                        graphics.DrawLine(redPen, shelf.XCoordinate + shelf.Width * 3 / 4, shelf.YCoordinate, shelf.XCoordinate + shelf.Width * 3 / 4, shelf.YCoordinate + shelf.Height);
                     }
                     i++;
                 }
