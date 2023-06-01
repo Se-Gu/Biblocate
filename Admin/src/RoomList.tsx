@@ -14,7 +14,7 @@ function RoomList({setPage, setRoom}) {
     }
 
     const getRooms = () => {
-        axios.get("https://localhost:7013/api/Rooms").then((response) => {
+        axios.get("https://biblocate.azurewebsites.net/api/Rooms").then((response) => {
             // console.log(response.data);
             setRooms(response.data);
         });
@@ -35,7 +35,7 @@ function RoomList({setPage, setRoom}) {
                 addName
             );
             //{room: {RoomName: addName, Base_Image: selectedFile}}
-            axios.post("https://localhost:7013/api/Rooms", formData)
+            axios.post("https://biblocate.azurewebsites.net/api/Rooms", formData)
             .then((response) => {
             // console.log(response.data);
             getRooms();
