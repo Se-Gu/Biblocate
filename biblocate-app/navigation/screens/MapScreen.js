@@ -3,6 +3,7 @@ import React from "react";
 import BookSearchScreen from "./BookSearchScreen";
 import { useEffect } from "react";
 import { Button } from "react-native-paper";
+import { color } from "react-native-reanimated";
 
 const PaintedImage = () => {
   return (
@@ -38,7 +39,11 @@ const MapScreen = ({ route, navigation }) => {
       </Button>
       <Text>MapScreen</Text>
       <View>
-        <PaintedImage />
+        <Image source={{ uri: "https://localhost:7013/api/Rooms/Image/5" }} style={{
+          height: "100%",
+          width: "100%",
+          backgroundColor: "blue"
+        }}/>
       </View>
     </View>
   );
