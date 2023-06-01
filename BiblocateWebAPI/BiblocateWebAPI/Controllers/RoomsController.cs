@@ -42,6 +42,14 @@ namespace BiblocateWebAPI.Controllers
             return room;
         }
 
+        // GET: api/Rooms/Image/5
+        [HttpGet("Image/{id}")]
+        public async Task<ActionResult> GetRoomImage(short id)
+        {
+            Room r = await _context.Room.FindAsync(id);
+            return File(r.Base_Image, "image/jpeg");
+        }
+
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -76,8 +84,25 @@ namespace BiblocateWebAPI.Controllers
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<Room>> PostRoom(IFormFile image)
         {
+            byte[] imageData = null;
+            using (var memoryStream = new MemoryStream())
+            {
+                image.CopyTo(memoryStream);
+                imageData = memoryStream.ToArray();
+            }
+
+            // Extract the string from the IFormFile object for RoomName
+            string roomName = Path.GetFileNameWithoutExtension(image.FileName);
+
+            // Create a new Room object and set its properties
+            var room = new Room
+            {
+                RoomName = roomName,
+                Base_Image = imageData
+            };
+
             _context.Room.Add(room);
             await _context.SaveChangesAsync();
 

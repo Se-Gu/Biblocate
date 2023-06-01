@@ -15,7 +15,7 @@ namespace BiblocateWebAPI.Services.Services
             _context = context;
         }
 
-        public async Task<string> GetShelfFromCallNumber(string callNumber)
+        public async Task<byte[]> GetShelfFromCallNumber(string callNumber)
         {
             Match dissectAlphaNumerical(string alphaNumerical)
             {
@@ -47,10 +47,10 @@ namespace BiblocateWebAPI.Services.Services
                 bool onTheLeftSide = myCompare(shelf.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.LeftCallNumberEnd, newCallNumber) >= 0;
                 bool onTheRightSide = myCompare(shelf.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.RightCallNumberEnd, newCallNumber) >= 0;
 
-                if (onTheLeftSide) return shelf.ShelfId + "A";
-                else if (onTheRightSide) return shelf.ShelfId + "B";
+                if (onTheLeftSide) return shelf.Left_Image;
+                else if (onTheRightSide) return shelf.Right_Image;
             }
-            return "does not exist!";
+            return new byte[0];
         }
     }
 }

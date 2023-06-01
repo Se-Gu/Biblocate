@@ -7,13 +7,16 @@ import DeviceInfo from "react-native-device-info";
 import BeaconDataManager from "./BeaconDataManager";
 
 const bleManager = new BleManager();
-
 const distanceBuffer = [-1, -1, -1];
 let numOfSamples = 0;
-const beaconDataManager = new BeaconDataManager();
 
 function BeaconScanner() {
-  const [distance, setDistance] = useState(-1);
+  // const [distance, setDistance] = useState(-1);
+  const beaconDataManager = new BeaconDataManager();
+
+  const setUnityFunction = (inputFunction) => {
+    beaconDataManager.setUnityFunction(inputFunction);
+  }
 
   const requestPermissions = async (cb) => {
     if (Platform.OS === "android") {
@@ -61,7 +64,7 @@ function BeaconScanner() {
     }
   };
 
-  const scanForPeripherals = () =>
+  const scanForPeripherals = () => {
     bleManager.startDeviceScan(
       null,
       {
@@ -69,37 +72,19 @@ function BeaconScanner() {
         scanMode: ScanMode.LowLatency,
       },
       (error, device) => {
-        beaconDataManager.addBeaconData(device.id, device.rssi);
-        /* TODO log into a data structure.
-         *   1. If device is in our list of devices,
-         *        1.1 Change the RSSI value for the device to current one
-         *        1.2 Add a time stamp to indicate the time of measurement
-         */
-
-        /*
-        if (device?.id?.includes("F7:42:89:4B:B9:AA")) {
-          console.log(device.id, device.rssi);
-          const currentDistance = Math.pow(10, (-75 - device.rssi!) / (10 * 3));
-
-          distanceBuffer[numOfSamples % 3] = currentDistance;
-
-          if (distanceBuffer.includes(-1)) {
-            setDistance(-1);
-          } else {
-            const sum = distanceBuffer.reduce((a, b) => a + b);
-            setDistance(Math.round(sum / distanceBuffer.length));
-          }
-
-          numOfSamples++;
+        if(!device) {
+          console.log(error);
+        } else {
+          beaconDataManager.addBeaconData(device.id, device.rssi);
         }
-        */
       }
     );
+  }
 
   return {
     scanForPeripherals,
     requestPermissions,
-    distance,
+    setUnityFunction,
   };
 }
 
