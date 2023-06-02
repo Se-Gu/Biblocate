@@ -1,5 +1,6 @@
 ﻿using BiblocateWebAPI.Data;
 using BiblocateWebAPI.Models;
+using BiblocateWebAPI.Models.Responses;
 using BiblocateWebAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
@@ -15,7 +16,7 @@ namespace BiblocateWebAPI.Services.Services
             _context = context;
         }
 
-        public async Task<byte[]> GetShelfFromCallNumber(string callNumber)
+        public async Task<ShelfResponse> GetShelfFromCallNumber(string callNumber)
         {
             Match dissectAlphaNumerical(string alphaNumerical)
             {
@@ -41,16 +42,45 @@ namespace BiblocateWebAPI.Services.Services
             var newCallNumber = Regex.Replace(callNumber, @"\s+", "");
 
             var shelfList = await _context.Shelf.ToListAsync();
+            ShelfResponse theShelf = new();
 
             foreach (var shelf in shelfList)
             {
                 bool onTheLeftSide = myCompare(shelf.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.LeftCallNumberEnd, newCallNumber) >= 0;
                 bool onTheRightSide = myCompare(shelf.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.RightCallNumberEnd, newCallNumber) >= 0;
 
-                if (onTheLeftSide) return shelf.Left_Image;
-                else if (onTheRightSide) return shelf.Right_Image;
+                if (onTheLeftSide)
+                {
+                    theShelf.ShelfId = shelf.ShelfId;
+                    theShelf.RoomId = shelf.RoomId;
+                    theShelf.Room = shelf.Room;
+                    theShelf.CallNumberBegin = shelf.LeftCallNumberBegin;
+                    theShelf.CallNumberEnd = shelf.LeftCallNumberEnd;
+                    theShelf.XCoordinate = shelf.XCoordinate;
+                    theShelf.YCoordinate = shelf.YCoordinate;
+                    theShelf.Height = shelf.Height;
+                    theShelf.Width = shelf.Width;
+                    theShelf.Image = shelf.Left_Image;
+
+                    return theShelf;
+                }
+                else if (onTheRightSide)
+                {
+                    theShelf.ShelfId = shelf.ShelfId;
+                    theShelf.RoomId = shelf.RoomId;
+                    theShelf.Room = shelf.Room;
+                    theShelf.CallNumberBegin = shelf.RightCallNumberBegin;
+                    theShelf.CallNumberEnd = shelf.RightCallNumberEnd;
+                    theShelf.XCoordinate = shelf.XCoordinate;
+                    theShelf.YCoordinate = shelf.YCoordinate;
+                    theShelf.Height = shelf.Height;
+                    theShelf.Width = shelf.Width;
+                    theShelf.Image = shelf.Right_Image;
+
+                    return theShelf;
+                }
             }
-            return new byte[0];
+            return theShelf;
         }
     }
 }

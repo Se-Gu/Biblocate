@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj": {}
+    "C:\\Users\\90539\\Desktop\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj": {
+    "C:\\Users\\90539\\Desktop\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\90539\\Desktop\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj",
         "projectName": "BiblocateWebAPI",
-        "projectPath": "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj",
-        "packagesPath": "C:\\Users\\giray\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\obj\\",
+        "projectPath": "C:\\Users\\90539\\Desktop\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj",
+        "packagesPath": "C:\\Users\\90539\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\90539\\Desktop\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\giray\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\90539\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,8 +99,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -112,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

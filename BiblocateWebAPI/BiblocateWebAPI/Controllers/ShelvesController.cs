@@ -6,6 +6,7 @@ using BiblocateWebAPI.Services.Services;
 using BiblocateWebAPI.Services.Interfaces;
 using System.Drawing;
 using System.Reflection;
+using BiblocateWebAPI.Models.Responses;
 
 namespace BiblocateWebAPI.Controllers
 {
@@ -25,8 +26,8 @@ namespace BiblocateWebAPI.Controllers
         [HttpGet("FindShelf/{callNumber}")]
         public async Task<ActionResult> GetShelfFromCallNumber(string callNumber)
         {
-            byte[]b = await _shelfService.GetShelfFromCallNumber(callNumber);
-            return File(b, "image/jpeg");
+            ShelfResponse response = await _shelfService.GetShelfFromCallNumber(callNumber);
+            return Ok(response);
         }
 
         // GET: api/Shelves
