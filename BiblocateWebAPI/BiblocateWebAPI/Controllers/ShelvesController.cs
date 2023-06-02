@@ -213,8 +213,9 @@ namespace BiblocateWebAPI.Controllers
                 }
             }
 
-            byte[][] paintedBytes = new byte[_context.Shelf.Count() * 2][];
-            for(int i = 0; i < _context.Shelf.Count() * 2; i++)
+            int c = _context.Shelf.Where((s) => s.RoomId.Equals(roomId)).Count();
+            byte[][] paintedBytes = new byte[c * 2][];
+            for(int i = 0; i < c * 2; i++)
             {
                 using (var ms2 = new MemoryStream())
                 {
@@ -224,11 +225,13 @@ namespace BiblocateWebAPI.Controllers
             }
 
             int j = 0;
-            foreach(Shelf s in _context.Shelf.Where((s) => s.RoomId.Equals(roomId)))
+            Shelf[] S = _context.Shelf.Where((s) => s.RoomId.Equals(roomId)).ToArray();
+            foreach (Shelf s in S)
             {
                 s.Left_Image = paintedBytes[2 * j];
                 s.Right_Image = paintedBytes[2 * j + 1];
                 _context.Shelf.Update(s);
+                _context.SaveChanges();
                 j++;
             }
             
@@ -240,7 +243,7 @@ namespace BiblocateWebAPI.Controllers
             //    b = ms2.ToArray();
             //}
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
 
             return NoContent();
             //return File(b, "image/jpeg");

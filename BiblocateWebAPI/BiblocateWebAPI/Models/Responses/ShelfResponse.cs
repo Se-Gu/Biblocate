@@ -4,7 +4,7 @@
     {
         public Int16 ShelfId { get; set; }
         public Int16 RoomId { get; set; }
-        public Room Room { get; set; }
+        public string RoomName { get; set; }
         public string CallNumberBegin { get; set; }
         public string CallNumberEnd { get; set; }
         public Single XCoordinate { get; set; }

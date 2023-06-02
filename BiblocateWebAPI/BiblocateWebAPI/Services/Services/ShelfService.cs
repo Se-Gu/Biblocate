@@ -41,19 +41,30 @@ namespace BiblocateWebAPI.Services.Services
             // remove white space from callNumber
             var newCallNumber = Regex.Replace(callNumber, @"\s+", "");
 
-            var shelfList = await _context.Shelf.ToListAsync();
+            var shelfList = await _context.Shelf.Select(s => new
+            {
+                ShelfId = s.ShelfId,
+                LeftCallNumberBegin = s.LeftCallNumberBegin,
+                LeftCallNumberEnd = s.LeftCallNumberEnd,
+                RightCallNumberBegin = s.RightCallNumberBegin,
+                RightCallNumberEnd = s.RightCallNumberEnd
+            }).ToListAsync();
+            
             ShelfResponse theShelf = new();
 
-            foreach (var shelf in shelfList)
+            foreach (var s in shelfList)
             {
-                bool onTheLeftSide = myCompare(shelf.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.LeftCallNumberEnd, newCallNumber) >= 0;
-                bool onTheRightSide = myCompare(shelf.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(shelf.RightCallNumberEnd, newCallNumber) >= 0;
+                bool onTheLeftSide = myCompare(s.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(s.LeftCallNumberEnd, newCallNumber) >= 0;
+                bool onTheRightSide = myCompare(s.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(s.RightCallNumberEnd, newCallNumber) >= 0;
+
+
 
                 if (onTheLeftSide)
                 {
+                    Shelf shelf = _context.Shelf.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
                     theShelf.ShelfId = shelf.ShelfId;
                     theShelf.RoomId = shelf.RoomId;
-                    theShelf.Room = shelf.Room;
+                    theShelf.RoomName = _context.Room.Where(r => r.RoomId.Equals(shelf.RoomId)).First().RoomName;
                     theShelf.CallNumberBegin = shelf.LeftCallNumberBegin;
                     theShelf.CallNumberEnd = shelf.LeftCallNumberEnd;
                     theShelf.XCoordinate = shelf.XCoordinate;
@@ -66,9 +77,10 @@ namespace BiblocateWebAPI.Services.Services
                 }
                 else if (onTheRightSide)
                 {
+                    Shelf shelf = _context.Shelf.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
                     theShelf.ShelfId = shelf.ShelfId;
                     theShelf.RoomId = shelf.RoomId;
-                    theShelf.Room = shelf.Room;
+                    theShelf.RoomName = _context.Room.Where(r => r.RoomId.Equals(shelf.RoomId)).First().RoomName;
                     theShelf.CallNumberBegin = shelf.RightCallNumberBegin;
                     theShelf.CallNumberEnd = shelf.RightCallNumberEnd;
                     theShelf.XCoordinate = shelf.XCoordinate;

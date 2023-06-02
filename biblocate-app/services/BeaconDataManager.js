@@ -44,7 +44,7 @@ class BeaconDataManager {
         (oldMeasurement = measuredBeacon.current),
         (newMeasurement = measurement)
       );
-      console.log("Current beacon value: ", measuredBeacon.current.rssi);
+      console.log(`Current beacon value: ${measuredBeacon.current.rssi} Name: ${measuredBeacon.unityId}`);
     }
 
     this.sendUnityData();
@@ -82,8 +82,12 @@ class BeaconDataManager {
     });
 
     if(largestBeacons[0] && largestBeacons[1]) {
-      const ratioOfMeasurements = Math.floor((largestRSSIs[0] + 30) * 100 / (largestRSSIs[1] + largestRSSIs[0] + 60));
-      return `${largestBeacons[0].unityId},${largestBeacons[1].unityId},${ratioOfMeasurements}`;
+      const ratio = largestRSSIs[1] / largestRSSIs[0];
+      console.log(`Ratio: ${ratio}`);
+      const calculation = 166 * Math.log10(2 * ratio);
+      console.log(`Calculation: ${calculation}`);
+      const ratioOfMeasurements = calculation < 100 ? Math.floor(calculation) : 100;
+      return `${largestBeacons[1].unityId},${largestBeacons[0].unityId},${ratioOfMeasurements}`;
     } else {
       return null;
     }
