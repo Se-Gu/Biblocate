@@ -21,7 +21,10 @@ const NavScreen = ({navigation}) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View>
+      <Button onPress={() => navigation.navigate("Map Screen")}>
+        Go Back
+      </Button>
       {isUnityVisible && <Unity/>}
     </View>
   );

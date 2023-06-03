@@ -1,16 +1,12 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
-import BookSearchScreen from "./BookSearchScreen";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "react-native-paper";
-import { color } from "react-native-reanimated";
 
 const MapScreen = ({ route, navigation }) => {
-  console.log(route?.params?.book?.CallNumber);
-  const dummyCN = "a1";
 
-  const [img, setImg] = useState(null);
+  const [shelf, setShelf] = useState(null);
 
   const [aspectRatio, setAspectRatio] = useState(null);
 
@@ -20,18 +16,19 @@ const MapScreen = ({ route, navigation }) => {
     setAspectRatio(imageAspectRatio);
   }
 
+  
   useEffect(() => {
     axios
     .get(
-      `https://biblocate.azurewebsites.net/api/Shelves/39`
+      `https://biblocate.azurewebsites.net/api/Shelves/FindShelf/`+route?.params?.book?.CallNumber
     )
     .then(function (response) {
-      setImg(response?.data?.Left_Image);
+      setShelf(response?.data);
     })
     .catch(function (error) {
       console.log(error);
     });
-  }, [])
+  }, [route?.params?.book?.CallNumber])
 
   return (
     <View>
@@ -39,22 +36,26 @@ const MapScreen = ({ route, navigation }) => {
         Go Back
       </Button>
       {/* <Text>MapScreen</Text> */}
-      <View style={{}}>
-        <Image source={{ uri: 'data:image/jpeg;base64,' + img }} 
-          style={{
-            aspectRatio: aspectRatio,
-            width: "100%",
-            backgroundColor: "blue"
-          }}
-          resizeMode="contain"
-          onLoad={handleImageLoad}
-        />
-        <Button onPress={() => navigation.navigate("Nav Screen")} style={{backgroundColor: "purple"}}>
-          <Text style={{color: "white"}}>
-            Navigate to Book
-          </Text>
-        </Button>
-      </View>
+      {shelf && 
+        <View style={{}}>
+          <Image source={{ uri: 'data:image/jpeg;base64,' + shelf.Image }} 
+            style={{
+              aspectRatio: aspectRatio,
+              width: "100%",
+              backgroundColor: "blue"
+            }}
+            resizeMode="contain"
+            onLoad={handleImageLoad}
+          />
+          <Text>This item is in the following Collection: {shelf.RoomName}</Text>
+          <Text>Look for this item: {route?.params?.book?.CallNumber}</Text>
+          <Button onPress={() => navigation.navigate("Nav Screen")} style={{backgroundColor: "purple"}}>
+            <Text style={{color: "white"}}>
+              Navigate to Room
+            </Text>
+          </Button>
+        </View>
+    }
     </View>
   );
 };

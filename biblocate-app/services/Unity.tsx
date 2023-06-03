@@ -56,7 +56,6 @@ const Unity = () => {
 
   return (
     <View>
-      <Button onPress={handlePress}>Beacon</Button>
       <UnityView
         ref={unityRef}
         style={{backgroundColor: "blue", height: "100%", width: "100%"}}
