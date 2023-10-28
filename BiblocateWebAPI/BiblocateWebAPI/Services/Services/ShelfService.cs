@@ -57,40 +57,30 @@ namespace BiblocateWebAPI.Services.Services
                 bool onTheLeftSide = myCompare(s.LeftCallNumberBegin, newCallNumber) <= 0 && myCompare(s.LeftCallNumberEnd, newCallNumber) >= 0;
                 bool onTheRightSide = myCompare(s.RightCallNumberBegin, newCallNumber) <= 0 && myCompare(s.RightCallNumberEnd, newCallNumber) >= 0;
 
-
+                Shelf shelf = _context.Shelf.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
+                ShelfImages images = _context.ShelfImages.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
+                theShelf.ShelfId = shelf.ShelfId;
+                theShelf.RoomId = shelf.RoomId;
+                theShelf.RoomName = _context.Room.Where(r => r.RoomId.Equals(shelf.RoomId)).First().RoomName;
+                theShelf.XCoordinate = shelf.XCoordinate;
+                theShelf.YCoordinate = shelf.YCoordinate;
+                theShelf.Height = shelf.Height;
+                theShelf.Width = shelf.Width;
 
                 if (onTheLeftSide)
                 {
-                    Shelf shelf = _context.Shelf.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
-                    theShelf.ShelfId = shelf.ShelfId;
-                    theShelf.RoomId = shelf.RoomId;
-                    theShelf.RoomName = _context.Room.Where(r => r.RoomId.Equals(shelf.RoomId)).First().RoomName;
                     theShelf.CallNumberBegin = shelf.LeftCallNumberBegin;
                     theShelf.CallNumberEnd = shelf.LeftCallNumberEnd;
-                    theShelf.XCoordinate = shelf.XCoordinate;
-                    theShelf.YCoordinate = shelf.YCoordinate;
-                    theShelf.Height = shelf.Height;
-                    theShelf.Width = shelf.Width;
-                    theShelf.Image = shelf.Left_Image;
-
-                    return theShelf;
+                    theShelf.Image = images.Left_Image;
                 }
                 else if (onTheRightSide)
                 {
-                    Shelf shelf = _context.Shelf.Where(sh => sh.ShelfId.Equals(s.ShelfId)).First();
-                    theShelf.ShelfId = shelf.ShelfId;
-                    theShelf.RoomId = shelf.RoomId;
-                    theShelf.RoomName = _context.Room.Where(r => r.RoomId.Equals(shelf.RoomId)).First().RoomName;
                     theShelf.CallNumberBegin = shelf.RightCallNumberBegin;
                     theShelf.CallNumberEnd = shelf.RightCallNumberEnd;
-                    theShelf.XCoordinate = shelf.XCoordinate;
-                    theShelf.YCoordinate = shelf.YCoordinate;
-                    theShelf.Height = shelf.Height;
-                    theShelf.Width = shelf.Width;
-                    theShelf.Image = shelf.Right_Image;
-
-                    return theShelf;
+                    theShelf.Image = images.Right_Image;
                 }
+
+                return theShelf;
             }
             return theShelf;
         }

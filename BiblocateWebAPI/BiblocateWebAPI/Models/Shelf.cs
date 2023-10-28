@@ -28,8 +28,6 @@ namespace BiblocateWebAPI.Models
         public Single Height { get; set; }
         [Required]
         public Single Width { get; set; }
-        public byte[]? Left_Image { get; set; }
-        public byte[]? Right_Image { get; set; }
-
+        public ShelfImages Images { get; set; }
     }
 }

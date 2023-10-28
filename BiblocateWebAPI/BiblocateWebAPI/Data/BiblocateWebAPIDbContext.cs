@@ -11,6 +11,7 @@ namespace BiblocateWebAPI.Data
 
         public DbSet<Room> Room { get; set; }
         public DbSet<Shelf> Shelf { get; set; }
+        public DbSet<ShelfImages> ShelfImages { get; set; }
 
     }
 }

@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "BiblocateWebAPI/1.0.0": {
         "dependencies": {
+          "Magick.NET-Q8-x64": "13.2.0",
           "Microsoft.AspNet.WebApi.Client": "5.2.9",
           "Microsoft.AspNet.WebApi.Cors": "5.2.9",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.12",
@@ -30,6 +31,47 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "Magick.NET-Q8-x64/13.2.0": {
+        "dependencies": {
+          "Magick.NET.Core": "13.2.0"
+        },
+        "runtime": {
+          "lib/netstandard21/Magick.NET-Q8-x64.dll": {
+            "assemblyVersion": "13.2.0.0",
+            "fileVersion": "13.2.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-musl-x64/native/Magick.Native-Q8-x64.dll.so": {
+            "rid": "linux-musl-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/Magick.Native-Q8-x64.dll.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/Magick.Native-Q8-x64.dll.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/Magick.Native-Q8-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "7.1.1.14"
+          }
+        }
+      },
+      "Magick.NET.Core/13.2.0": {
+        "runtime": {
+          "lib/netstandard21/Magick.NET.Core.dll": {
+            "assemblyVersion": "13.2.0.0",
+            "fileVersion": "13.2.0.0"
           }
         }
       },
@@ -2524,6 +2566,20 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Magick.NET-Q8-x64/13.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jes9AJKCatHVp36JyML6PeTW66o0T0+ZNSYJPX3NVJErB4TpjDjr3IOUMSzuSsik4Kk26KcaSRZIDxxOJ5OTrA==",
+      "path": "magick.net-q8-x64/13.2.0",
+      "hashPath": "magick.net-q8-x64.13.2.0.nupkg.sha512"
+    },
+    "Magick.NET.Core/13.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rzCTB6J1AuG6BjPjiARgg3cv9yZnxZuwxC6V4R3AIM+JX8khlMTcQFWh0S3CO3DtQpQ00fvYrnQOz7/yxQ9mJw==",
+      "path": "magick.net.core/13.2.0",
+      "hashPath": "magick.net.core.13.2.0.nupkg.sha512"
     },
     "MessagePack/2.1.152": {
       "type": "package",

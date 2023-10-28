@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "L73YfTCAhrpUdBZqYFa8JdUIy4t/d3L89OOg1uce0U9k2jKNWxfu35spAPk5ngr83jCzGjHXq6iCvpk9PzW4EA==",
+  "dgSpecHash": "FmSMx167YQUwuMhVG1yvI/rn9omlO5dkLSdhqYUDNaC2PK6LsfCsmoTtoG8Diy69N6wXA9YFz0JMqz8cs48Qyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\giray\\Desktop\\githubrepo1\\Biblocate\\BiblocateWebAPI\\BiblocateWebAPI\\BiblocateWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\giray\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\giray\\.nuget\\packages\\magick.net-q8-x64\\13.2.0\\magick.net-q8-x64.13.2.0.nupkg.sha512",
+    "C:\\Users\\giray\\.nuget\\packages\\magick.net.core\\13.2.0\\magick.net.core.13.2.0.nupkg.sha512",
     "C:\\Users\\giray\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\giray\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\giray\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

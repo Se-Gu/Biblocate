@@ -3,6 +3,7 @@ import './EditRoom.css';
 import axios from 'axios';
 import room_img from "./ARTROOM.jpg";
 import shelf_img from "./raf2.jpg";
+import * as webConfig from "./webConfig";
 
 function EditShelf({page, setPage, room, setRoom}) {
     const [retrieved, setRetrieved] = useState([]);
@@ -12,16 +13,19 @@ function EditShelf({page, setPage, room, setRoom}) {
     const [selected, setSelected] = useState(null);
     const [roomDims, setRoomDims] = useState({width: null, height: null});
     const [callNums, setCallNums] = useState({lcnb: null, lcne: null, rcnb: null, rcne: null});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        axios.get("https://biblocate.azurewebsites.net/api/Rooms/Image/" + room.roomId).then((response) => {
+        axios.get( webConfig.baseImage + room.roomId).then((response) => {
             // console.log(response.data);
             //setRoomDims({width: 2892, height: 2223});
         });
-        axios.get("https://biblocate.azurewebsites.net/api/Shelves/in/" + room.roomId).then((response) => {
+        setLoading(true);
+        axios.get( webConfig.shelvesIn + room.roomId).then((response) => {
             // console.log(response.data);
             setRetrieved(response.data);
             setUpdated(response.data);
+            setLoading(false);
         });
     }, []);
 
@@ -45,7 +49,7 @@ function EditShelf({page, setPage, room, setRoom}) {
         });
         */
         
-        axios.post('https://biblocate.azurewebsites.net/api/Shelves/Save/' + room.roomId, [...added.list, ...updated].map((instance) => {delete instance.ShelfId; console.log(instance); return instance;}) )
+        axios.post( webConfig.shelvesSave + room.roomId, [...added.list, ...updated].map((instance) => {delete instance.ShelfId; console.log(instance); return instance;}) )
         // {}, {
         //    params: { 
         //        saveDto: {Added: added.list, Updated: added.list, Deleted: ["del","ete"]}
@@ -76,6 +80,7 @@ function EditShelf({page, setPage, room, setRoom}) {
     const handleAdd = () => {
         setAdded({num: added.num+1, list: [...added.list, {ShelfId: "a" + added.num, RoomId: room.roomId, XCoordinate: 0, YCoordinate: 0, LeftCallNumberBegin: "",
             LeftCallNumberEnd: "", RightCallNumberBegin: "", RightCallNumberEnd: "", Width: 80, Height: 450}]});
+        handleSelect("a" + added.num, "", "", "", "");
     }
 
     const handleDelete = () => {
@@ -155,12 +160,13 @@ function EditShelf({page, setPage, room, setRoom}) {
     return (
         <div>
         <p>Edit {page.roomName}</p>
+        {loading && <p>LOADING...</p>}
             <div className="mainToolbar">
                 <button onClick={handleAdd}>Add</button>
                 <button onClick={handleSave}>Save</button>
                 <button onClick={handleCancel}>Cancel</button>
             </div>
-            {selected && <div>
+            {selected !== null && <div>
                 <div className="shelfToolbar">
                     <button onClick={() => handleMove(-50,0)}>left</button>
                     <button onClick={() => handleMove(50,0)}>right</button>
@@ -177,7 +183,7 @@ function EditShelf({page, setPage, room, setRoom}) {
             </div>
             }
             <div className="roomWrapper">
-                <img src={"https://biblocate.azurewebsites.net/api/Rooms/Image/" + room.roomId} alt="room_img" onLoad={handleImageLoad}
+                <img src={webConfig.baseImage + room.roomId} alt="room_img" onLoad={handleImageLoad}
                     className="roomImg" onClick={()=>setSelected(null)}/> 
                 {
                     updated.map(shelf => 

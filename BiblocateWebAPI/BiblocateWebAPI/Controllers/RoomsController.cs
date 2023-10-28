@@ -86,7 +86,7 @@ namespace BiblocateWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(IFormFile image)
         {
-            byte[] imageData = null;
+            byte[] imageData; 
             using (var memoryStream = new MemoryStream())
             {
                 image.CopyTo(memoryStream);

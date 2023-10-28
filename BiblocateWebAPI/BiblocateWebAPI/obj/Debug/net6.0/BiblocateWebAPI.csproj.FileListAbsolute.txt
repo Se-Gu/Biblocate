@@ -579,3 +579,9 @@ C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\obj
 C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\obj\Debug\net6.0\BiblocateWebAPI.pdb
 C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\obj\Debug\net6.0\BiblocateWebAPI.genruntimeconfig.cache
 C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\obj\Debug\net6.0\ref\BiblocateWebAPI.dll
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\Magick.NET-Q8-x64.dll
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\Magick.NET.Core.dll
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\runtimes\linux-musl-x64\native\Magick.Native-Q8-x64.dll.so
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\runtimes\linux-x64\native\Magick.Native-Q8-x64.dll.so
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\runtimes\osx-x64\native\Magick.Native-Q8-x64.dll.dylib
+C:\Users\giray\Desktop\githubrepo1\Biblocate\BiblocateWebAPI\BiblocateWebAPI\bin\Debug\net6.0\runtimes\win-x64\native\Magick.Native-Q8-x64.dll

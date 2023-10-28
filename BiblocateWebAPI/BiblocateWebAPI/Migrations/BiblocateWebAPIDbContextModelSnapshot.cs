@@ -61,9 +61,6 @@ namespace BiblocateWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<byte[]>("Left_Image")
-                        .HasColumnType("bytea");
-
                     b.Property<string>("RightCallNumberBegin")
                         .IsRequired()
                         .HasColumnType("text");
@@ -71,9 +68,6 @@ namespace BiblocateWebAPI.Migrations
                     b.Property<string>("RightCallNumberEnd")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<byte[]>("Right_Image")
-                        .HasColumnType("bytea");
 
                     b.Property<short>("RoomId")
                         .HasColumnType("smallint");
@@ -94,6 +88,22 @@ namespace BiblocateWebAPI.Migrations
                     b.ToTable("Shelf");
                 });
 
+            modelBuilder.Entity("BiblocateWebAPI.Models.ShelfImages", b =>
+                {
+                    b.Property<short>("ShelfId")
+                        .HasColumnType("smallint");
+
+                    b.Property<byte[]>("Left_Image")
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("Right_Image")
+                        .HasColumnType("bytea");
+
+                    b.HasKey("ShelfId");
+
+                    b.ToTable("ShelfImages");
+                });
+
             modelBuilder.Entity("BiblocateWebAPI.Models.Shelf", b =>
                 {
                     b.HasOne("BiblocateWebAPI.Models.Room", "Room")
@@ -105,9 +115,25 @@ namespace BiblocateWebAPI.Migrations
                     b.Navigation("Room");
                 });
 
+            modelBuilder.Entity("BiblocateWebAPI.Models.ShelfImages", b =>
+                {
+                    b.HasOne("BiblocateWebAPI.Models.Shelf", "Shelf")
+                        .WithOne("Images")
+                        .HasForeignKey("BiblocateWebAPI.Models.ShelfImages", "ShelfId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Shelf");
+                });
+
             modelBuilder.Entity("BiblocateWebAPI.Models.Room", b =>
                 {
                     b.Navigation("Shelves");
+                });
+
+            modelBuilder.Entity("BiblocateWebAPI.Models.Shelf", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

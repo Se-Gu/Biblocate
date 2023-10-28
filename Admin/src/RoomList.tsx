@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import './RoomList.css';
+import * as webConfig from "./webConfig";
 
 function RoomList({setPage, setRoom}) {
     const [rooms, setRooms] = useState([{RoomId: 1, RoomName: "NO ROOMS"}]);
@@ -14,7 +15,7 @@ function RoomList({setPage, setRoom}) {
     }
 
     const getRooms = () => {
-        axios.get("https://biblocate.azurewebsites.net/api/Rooms").then((response) => {
+        axios.get(webConfig.rooms).then((response) => {
             // console.log(response.data);
             setRooms(response.data);
         });
@@ -35,7 +36,7 @@ function RoomList({setPage, setRoom}) {
                 addName
             );
             //{room: {RoomName: addName, Base_Image: selectedFile}}
-            axios.post("https://biblocate.azurewebsites.net/api/Rooms", formData)
+            axios.post(webConfig.rooms, formData)
             .then((response) => {
             // console.log(response.data);
             getRooms();
